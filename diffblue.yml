@@ -1,130 +1,166 @@
-buildCmd: ""
-testCmd: ""
-classpathCmd: ""
-prebuildCmd: ""
+# This file was automatically generated using script in dashboard/scripts/update-diffblue-yml
+# It is a combination of the local diffblue-base.yml and the yml file in dashboard/scripts/update-diffblue-yml
+# Do not change any of the values manually to keep options uniform across all benchmarks
+#testCmd: 'true'
+ignoreExistingCoverage: true
+skipVerification: false
+staticValuesJson: true
+cbmcArguments:
+  java-max-vla-length: 100000
+  depth: false
+  java-test-input-factory: false
+  java-test-input-factory-bmc-max-mutators: false
+  java-test-input-factory-bmc-recursion-limit: false
+  do-not-test-methods-with-access:
+    - private
+  cover-function-only: false
+  cover-only: file
+  inline-into-assertion: true
+  inline-function-arguments: true
+  no-reflective-asserts: true
 phases:
-  -
+  - timeout: 150
     cbmcArguments:
-      classpath: "/tools/cbmc/models.jar:."
-      cover-function-only: true
-      depth: 1500
-      java-max-vla-length: 48
-      do-not-test-methods-with-access: ["private"]
-      java-assume-inputs-non-null: false
+      classpath: '/tools/cbmc/models-simple-overlay.jar:/tools/cbmc/models.jar:.'
+      smart-harness: simplest-constructor-and-nondet
+      java-assume-inputs-non-null: true
       max-nondet-array-length: 10
-      java-mock-class:
-        - "java.io.File"
-        - "java.io.FileInputStream"
-        - "java.io.FileReader"
-        - "java.io.InputStreamReader"
-        - "java.io.PrintWriter"
-        - "java.lang.Process"
-        - "java.lang.ProcessBuilder"
-        - "java.lang.System"
-        - "java.nio.file.Files"
-        - "java.nio.file.Paths"
-        - "java.security.KeyFactory"
-        - "java.security.Signature"
-        - "java.security.SecureRandom"
-        - "java.util.Date"
-        - "java.util.Random"
-      java-test-input-factory: "bmc"
-      java-test-input-factory-bmc-max-mutators: 2
-      java-test-input-factory-bmc-recursion-limit: 2
-      java-unwind-enum-static: true
-      java-test-input-factory-entry-point:
-        - "<init>"
-        - "set[A-Z]\\w*"
-      java-test-output-entry-point:
-        - "get[A-Z]\\w*"
       max-nondet-string-length: 10
-      unwind: 2
-      throw-runtime-exceptions: false
       string-printable: true
-      json-ui: true
-      cover: "location"
-    timeout: 60
-    skipVerification: false
-    ignore-existing-coverage: false
-  -
+      string-input-value:
+        - foo
+      java-assume-inputs-integral: true
+      throw-runtime-exceptions: false
+      unwind: 1
+    nextPhase:
+      not_analyzed: null
+      time_out: 3
+  - timeout: 150
     cbmcArguments:
-      classpath: "/tools/cbmc/models.jar:."
-      cover-function-only: true
-      depth: 3000
-      java-max-vla-length: 96
-      max-nondet-array-length: 10
-      java-mock-class:
-        - "java.io.File"
-        - "java.io.FileInputStream"
-        - "java.io.FileReader"
-        - "java.io.InputStreamReader"
-        - "java.io.PrintWriter"
-        - "java.lang.Process"
-        - "java.lang.ProcessBuilder"
-        - "java.lang.System"
-        - "java.nio.file.Files"
-        - "java.nio.file.Paths"
-        - "java.security.KeyFactory"
-        - "java.security.Signature"
-        - "java.security.SecureRandom"
-        - "java.util.Date"
-        - "java.util.Random"
-      java-test-input-factory: "bmc"
-      java-test-input-factory-bmc-max-mutators: 2
-      java-test-input-factory-bmc-recursion-limit: 2
-      java-unwind-enum-static: true
-      java-test-input-factory-entry-point:
-        - "<init>"
-        - "set[A-Z]\\w*"
-      java-test-output-entry-point:
-        - "get[A-Z]\\w*"
+      classpath: '/tools/cbmc/models.jar:.'
+      smart-harness: simplest-constructor-and-nondet
+      java-assume-inputs-non-null: true
+      max-nondet-array-length: 20
       max-nondet-string-length: 50
-      unwind: 4
+      string-printable: true
+      string-input-value:
+        - foo
+      java-assume-inputs-integral: true
       throw-runtime-exceptions: false
-      string-printable: true
-      json-ui: true
-      cover: "location"
-    timeout: 300
-    skipVerification: false
-    ignore-existing-coverage: false
-  -
+      unwind: 4
+    nextPhase:
+      time_out: 3
+  - timeout: 150
     cbmcArguments:
-      classpath: "/tools/cbmc/models.jar:."
-      cover-function-only: true
-      depth: 6000
-      max-nondet-array-length: 10
-      java-max-vla-length: 192
-      java-mock-class:
-        - "java.io.File"
-        - "java.io.FileInputStream"
-        - "java.io.FileReader"
-        - "java.io.InputStreamReader"
-        - "java.io.PrintWriter"
-        - "java.lang.Process"
-        - "java.lang.ProcessBuilder"
-        - "java.lang.System"
-        - "java.nio.file.Files"
-        - "java.nio.file.Paths"
-        - "java.security.KeyFactory"
-        - "java.security.Signature"
-        - "java.security.SecureRandom"
-        - "java.util.Date"
-        - "java.util.Random"
-      java-test-input-factory: "bmc"
-      java-test-input-factory-bmc`-max-mutators: 2
-      java-test-input-factory-bmc-recursion-limit: 2
-      java-unwind-enum-static: true
-      java-test-input-factory-entry-point:
-        - "<init>"
-        - "set[A-Z]\\w*"
-      java-test-output-entry-point:
-        - "get[A-Z]\\w*"
+      classpath: '/tools/cbmc/models.jar:.'
+      smart-harness: simplest-constructor-and-nondet
+      java-assume-inputs-non-null: true
+      max-nondet-array-length: 30
       max-nondet-string-length: 100
+      string-printable: false
+      java-assume-inputs-integral: false
+      throw-runtime-exceptions: false
       unwind: 16
-      throw-runtime-exceptions: true
+    nextPhase:
+      time_out: 3
+  - timeout: 150
+    cbmcArguments:
+      classpath: '/tools/cbmc/models-simple-overlay.jar:/tools/cbmc/models.jar:.'
+      smart-harness: input-factory
+      java-test-input-factory-entry-point:
+        - <init>
+        - 'set[A-Z]\\w*'
+      java-assume-inputs-non-null: true
+      max-nondet-array-length: 2
+      max-nondet-string-length: 10
       string-printable: true
-      json-ui: true
-      cover: "location"
-    timeout: 2400
-    skipVerification: false
-    ignore-existing-coverage: false
+      string-input-value:
+        - foo
+      java-assume-inputs-integral: true
+      throw-runtime-exceptions: false
+      unwind: 2
+  - timeout: 150
+    cbmcArguments:
+      classpath: '/tools/cbmc/models-simple-overlay.jar:/tools/cbmc/models.jar:.'
+      java-assume-inputs-non-null: true
+      max-nondet-array-length: 10
+      max-nondet-string-length: 10
+      string-printable: true
+      string-input-value:
+        - foo
+      java-assume-inputs-integral: true
+      throw-runtime-exceptions: false
+      unwind: 1
+    nextPhase:
+      time_out: 10
+  - timeout: 150
+    cbmcArguments:
+      classpath: '/tools/cbmc/models-simple-overlay.jar:/tools/cbmc/models.jar:.'
+      java-assume-inputs-non-null: false
+      max-nondet-array-length: 20
+      max-nondet-string-length: 50
+      string-printable: true
+      string-input-value:
+        - foo
+      java-assume-inputs-integral: true
+      throw-runtime-exceptions: false
+      unwind: 2
+    nextPhase:
+      time_out: 10
+  - timeout: 150
+    cbmcArguments:
+      classpath: '/tools/cbmc/models.jar:.'
+      java-assume-inputs-non-null: false
+      max-nondet-array-length: 30
+      max-nondet-string-length: 100
+      string-printable: false
+      java-assume-inputs-integral: false
+      throw-runtime-exceptions: false
+      unwind: 4
+    nextPhase:
+      time_out: 10
+  - timeout: 150
+    cbmcArguments:
+      classpath: '/tools/cbmc/models.jar:.'
+      java-assume-inputs-non-null: false
+      max-nondet-array-length: 30
+      max-nondet-string-length: 100
+      string-printable: false
+      java-assume-inputs-integral: false
+      throw-runtime-exceptions: false
+      unwind: 8
+    nextPhase:
+      time_out: 10
+  - timeout: 150
+    cbmcArguments:
+      classpath: '/tools/cbmc/models.jar:.'
+      java-assume-inputs-non-null: false
+      max-nondet-array-length: 30
+      max-nondet-string-length: 100
+      string-printable: false
+      java-assume-inputs-integral: false
+      throw-runtime-exceptions: false
+      unwind: 16
+    nextPhase:
+      time_out: 10
+  - timeout: 150
+    cbmcArguments:
+      classpath: '/tools/cbmc/models.jar:.'
+      java-assume-inputs-non-null: false
+      max-nondet-array-length: 30
+      max-nondet-string-length: 100
+      string-printable: false
+      java-assume-inputs-integral: false
+      throw-runtime-exceptions: false
+      unwind: 3
+  - timeout: 100
+    cbmcArguments:
+      classpath: '/tools/cbmc/models.jar:.'
+      java-assume-inputs-non-null: false
+      max-nondet-array-length: 30
+      max-nondet-string-length: 100
+      paths: fifo
+      string-printable: false
+      java-assume-inputs-integral: false
+      throw-runtime-exceptions: false
+      unwind: false
