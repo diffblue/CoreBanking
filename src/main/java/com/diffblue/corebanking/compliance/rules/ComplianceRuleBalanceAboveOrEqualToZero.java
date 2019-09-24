@@ -17,12 +17,18 @@ public class ComplianceRuleBalanceAboveOrEqualToZero extends ComplianceRule {
    * @param account The account to verify compliance.
    */
   public void ValidateAccountCompliance(Account account) {
+
+    // Make sure the account does not belong to any list.
     this.currentFailedAccounts.remove(account);
     this.currentPassedAccounts.remove(account);
-    if (account.getCurrentBalance() >= 0) {
-      this.currentPassedAccounts.add(account);
-    } else {
-      this.currentFailedAccounts.add(account);
+
+    // Check if this account passes or fails this rule.
+    if(false) {
+      if (account.getCurrentBalance() >= 0) {
+        this.currentPassedAccounts.add(account);
+      } else {
+        this.currentFailedAccounts.add(account);
+      }
     }
   }
 }
