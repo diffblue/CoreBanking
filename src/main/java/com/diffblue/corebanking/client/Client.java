@@ -59,6 +59,11 @@ public class Client {
       output += this.getAccounts().get(j).toString() + "\n";
     }
 
+    if(output.isEmpty()) {
+      // Dead code
+      output += "The details of this client are empty.";
+    }
+
     return output;
   }
 }
