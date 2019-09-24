@@ -22,12 +22,12 @@ public class Account {
    * @param client The client owner of the account.
    * @param amount The initial amount in the account.
    */
-  public Account(long accountNumber, Client client, long amount) {
+  public Account(final long accountNumber, final Client client, final long amount) {
     this.accountNumber = accountNumber;
     this.client = client;
-    this.currentBalance = amount;
-    this.accountName = "Current";
-    this.accountState = AccountState.OPEN;
+    currentBalance = amount;
+    accountName = "Current";
+    accountState = AccountState.OPEN;
   }
 
   /**
@@ -72,11 +72,11 @@ public class Account {
    * @param amount The amount to add to the balance.
    * @throws AccountException If the account is not in an OPEN state.
    */
-  public void addToBalance(long amount) throws AccountException {
+  public void addToBalance(final long amount) throws AccountException {
     if (getAccountState() != AccountState.OPEN) {
       throw new AccountException("Cannot add to balance, account is closed.");
     }
-    this.currentBalance += amount;
+    currentBalance += amount;
   }
 
   /**
@@ -86,19 +86,19 @@ public class Account {
    * @throws AccountException If the account is not OPEN, of the balance is lower than the amount to
    *     take.
    */
-  public void takeFromBalance(long amount) throws AccountException {
+  public void takeFromBalance(final long amount) throws AccountException {
     if (getAccountState() != AccountState.OPEN) {
       throw new AccountException("Cannot take from balance, account is closed.");
     }
-    if (this.currentBalance + amount < 0) {
+    if (currentBalance + amount < 0) {
       throw new AccountException(
           "Trying to take "
               + amount
               + " from the existing balance of "
-              + this.currentBalance
+              + currentBalance
               + ". Not enough funds.");
     }
-    this.currentBalance += amount;
+    currentBalance += amount;
   }
 
   /**
@@ -116,7 +116,7 @@ public class Account {
    * @param accountName The account name to set.
    * @throws AccountException If the account is not in an OPEN state.
    */
-  public void setAccountName(String accountName) throws AccountException {
+  public void setAccountName(final String accountName) throws AccountException {
     if (getAccountState() != AccountState.OPEN) {
       throw new AccountException("Cannot change account name, account is closed.");
     }
@@ -141,7 +141,7 @@ public class Account {
     if (getAccountState() != AccountState.OPEN) {
       throw new AccountException("Account is already closed.");
     }
-    this.accountState = AccountState.CLOSED;
+    accountState = AccountState.CLOSED;
   }
 
   /**
@@ -150,11 +150,11 @@ public class Account {
    * @param transaction The transaction to add.
    * @throws AccountException If the account is not in an OPEN state.
    */
-  public void addTransaction(Transaction transaction) throws AccountException {
+  public void addTransaction(final Transaction transaction) throws AccountException {
     if (getAccountState() != AccountState.OPEN) {
       throw new AccountException("The account is closed, you cannot add a transaction.");
     }
-    this.accountStatement.addTransaction(transaction);
+    accountStatement.addTransaction(transaction);
   }
 
   /**
@@ -167,25 +167,27 @@ public class Account {
 
     output +=
         "Acc #: "
-            + this.getAccountNumber()
+            + getAccountNumber()
             + "\t | "
             + "Acc name: "
-            + this.getAccountName()
+            + getAccountName()
             + "\t | "
             + "Acc holder: "
-            + this.getClient().getClientName()
+            + getClient().getClientName()
             + "\t | "
             + "Acc balance: "
-            + this.getCurrentBalance()
+            + getCurrentBalance()
             + "\t | "
             + "Acc state: "
-            + this.getAccountState()
+            + getAccountState()
             + "\t |\n";
 
-    output += this.accountStatement.toString();
+    output += accountStatement.toString();
 
     return output;
   }
+
+  public void foo() {}
 
   /** AccountState. */
   public enum AccountState {
@@ -199,7 +201,7 @@ public class Account {
 
     /** Constructor. */
     private AccountStatement() {
-      this.transactions = new ArrayList<Transaction>();
+      transactions = new ArrayList<Transaction>();
     }
 
     /**
@@ -208,7 +210,7 @@ public class Account {
      * @return The transactions list.
      */
     private List<Transaction> getTransactions() {
-      return this.transactions;
+      return transactions;
     }
 
     /**
@@ -216,8 +218,8 @@ public class Account {
      *
      * @param transaction The transaction to add to the transactions list.
      */
-    private void addTransaction(Transaction transaction) {
-      this.transactions.add(transaction);
+    private void addTransaction(final Transaction transaction) {
+      transactions.add(transaction);
     }
 
     /**
@@ -228,11 +230,11 @@ public class Account {
     public String toString() {
       String output = "";
 
-      if (this.transactions.size() == 0) {
+      if (transactions.size() == 0) {
         return "Account statement empty.";
       }
-      for (int i = this.transactions.size() - 1; i >= 0; i--) {
-        output += this.transactions.get(i).toString() + "\n";
+      for (int i = transactions.size() - 1; i >= 0; i--) {
+        output += transactions.get(i) + "\n";
       }
 
       return output;

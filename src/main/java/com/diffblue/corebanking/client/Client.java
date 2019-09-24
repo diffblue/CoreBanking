@@ -16,7 +16,7 @@ public class Client {
    */
   public Client(String clientName) {
     this.clientName = clientName;
-    this.accounts = new ArrayList<Account>();
+    this.accounts = new ArrayList<>();
   }
 
   /**

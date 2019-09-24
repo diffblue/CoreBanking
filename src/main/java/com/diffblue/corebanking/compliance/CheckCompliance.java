@@ -3,7 +3,6 @@ package com.diffblue.corebanking.compliance;
 import com.diffblue.corebanking.account.Account;
 import com.diffblue.corebanking.compliance.rules.ComplianceRule;
 import com.diffblue.corebanking.compliance.rules.ComplianceRuleBalanceAboveOrEqualToZero;
-
 import java.util.ArrayList;
 import java.util.List;
 

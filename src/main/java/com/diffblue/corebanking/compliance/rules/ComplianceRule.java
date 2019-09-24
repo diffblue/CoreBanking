@@ -1,7 +1,6 @@
 package com.diffblue.corebanking.compliance.rules;
 
 import com.diffblue.corebanking.account.Account;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,9 +26,7 @@ public abstract class ComplianceRule {
    */
   public abstract void ValidateAccountCompliance(Account account);
 
-  /**
-   * Purges all accounts from the rules.
-   */
+  /** Purges all accounts from the rules. */
   public void purgeAccounts() {
     this.currentFailedAccounts.clear();
     this.currentPassedAccounts.clear();
