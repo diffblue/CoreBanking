@@ -17,6 +17,12 @@
       <version>17.0.0</version>
       <scope>compile</scope>
     </dependency>
+    <dependency>
+        <groupId>junit</groupId>
+        <artifactId>junit</artifactId>
+        <version>4.13-beta-3</version>
+        <scope>test</scope>
+    </dependency>
   </dependencies>
   <build>
     <plugins>
@@ -73,12 +79,4 @@
       </plugin>
     </plugins>
   </build>
-  <dependencies>
-    <dependency>
-        <groupId>junit</groupId>
-        <artifactId>junit</artifactId>
-        <version>4.13-beta-3</version>
-        <scope>test</scope>
-    </dependency>
-  </dependencies>
 </project>
