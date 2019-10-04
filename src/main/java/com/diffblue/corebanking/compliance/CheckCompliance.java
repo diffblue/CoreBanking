@@ -8,7 +8,7 @@ import java.util.List;
 
 public class CheckCompliance {
 
-  private static final List<ComplianceRule> COMPLIANCE_RULES = new ArrayList<ComplianceRule>();
+  public static final List<ComplianceRule> COMPLIANCE_RULES = new ArrayList<ComplianceRule>();
 
   static {
     COMPLIANCE_RULES.add(new ComplianceRuleBalanceAboveOrEqualToZero());

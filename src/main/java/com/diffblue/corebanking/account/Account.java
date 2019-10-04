@@ -187,8 +187,6 @@ public class Account {
     return output;
   }
 
-  public void foo() {}
-
   /** AccountState. */
   public enum AccountState {
     OPEN,
@@ -209,7 +207,7 @@ public class Account {
      *
      * @return The transactions list.
      */
-    private List<Transaction> getTransactions() {
+    public List<Transaction> getTransactions() {
       return transactions;
     }
 
@@ -239,5 +237,6 @@ public class Account {
 
       return output;
     }
+
   }
 }

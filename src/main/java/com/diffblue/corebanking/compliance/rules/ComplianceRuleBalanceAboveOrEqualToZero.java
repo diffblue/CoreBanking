@@ -4,19 +4,12 @@ import com.diffblue.corebanking.account.Account;
 
 public class ComplianceRuleBalanceAboveOrEqualToZero extends ComplianceRule {
 
-  private static final int RULE_ID = 1;
-
-  /** Constructor. */
-  public ComplianceRuleBalanceAboveOrEqualToZero() {
-    super(RULE_ID);
-  }
-
   /**
    * Checks if the passed account passes or fails this rule.
    *
    * @param account The account to verify compliance.
    */
-  public void ValidateAccountCompliance(Account account) {
+  public boolean ValidateAccountCompliance(Account account) {
 
     // Make sure the account does not belong to any list.
     currentFailedAccounts.remove(account);
@@ -25,8 +18,10 @@ public class ComplianceRuleBalanceAboveOrEqualToZero extends ComplianceRule {
     // Check if this account passes or fails this rule.
     if (account.getCurrentBalance() >= 0) {
       currentPassedAccounts.add(account);
-    } else if (false) {
+      return true;
+    } else {
       currentFailedAccounts.add(account);
+      return false;
     }
   }
 }
