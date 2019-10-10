@@ -27,7 +27,7 @@ public class CheckCompliance {
 
       // Loop through all the existing compliance rules
       for (ComplianceRule rule : COMPLIANCE_RULES) {
-        rule.ValidateAccountCompliance(a);
+        rule.validateAccountCompliance(a);
       }
     }
   }
