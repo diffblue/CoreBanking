@@ -193,6 +193,15 @@ public class Account {
     CLOSED
   }
 
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null) return false;
+    if (!(o instanceof Account)) return false;
+    Account account = (Account) o;
+    return accountNumber == account.accountNumber;
+  }
+
   /** AccountStatement of an account, which holds the list of all executed transactions. */
   public class AccountStatement {
     private final List<Transaction> transactions;
