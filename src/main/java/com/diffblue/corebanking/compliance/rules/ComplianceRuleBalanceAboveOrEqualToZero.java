@@ -12,13 +12,13 @@ public class ComplianceRuleBalanceAboveOrEqualToZero extends ComplianceRule {
   public void validateAccountCompliance(Account account) {
 
     // Make sure the account does not belong to any list.
-    this.forgetAccount(account);
+    this.removeFromComplianceLists(account);
 
     // Check if this account passes or fails this rule.
     if (account.getCurrentBalance() >= 0) {
-      setCurrentPassedAccount(account);
+      addToCompliantAccounts(account);
     } else {
-      setCurrentFailedAccount(account);
+      addToNonCompliantAccounts(account);
     }
   }
 }

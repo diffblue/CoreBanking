@@ -13,7 +13,7 @@ public abstract class ComplianceRule {
    *
    * @param account
    */
-  public void setCurrentFailedAccount(Account account) {
+  public void addToNonCompliantAccounts(Account account) {
     if (currentFailedAccounts.contains(account)) {
       throw new IllegalStateException();
     }
@@ -24,7 +24,7 @@ public abstract class ComplianceRule {
    *
    * @param account
    */
-  public void setCurrentPassedAccount(Account account) {
+  public void addToCompliantAccounts(Account account) {
     if (currentPassedAccounts.contains(account)) {
       throw new IllegalStateException();
     }
@@ -64,7 +64,7 @@ public abstract class ComplianceRule {
    *
    * @param account
    */
-  public void forgetAccount(Account account) {
+  public void removeFromComplianceLists(Account account) {
     this.currentFailedAccounts.remove(account);
     this.currentPassedAccounts.remove(account);
   }
