@@ -6,18 +6,18 @@ import java.util.List;
 
 public abstract class ComplianceRule {
 
-  private final List<Account> currentFailedAccounts = new ArrayList<Account>();
-  private final List<Account> currentPassedAccounts = new ArrayList<Account>();
+  private final List<Account> currentNonCompliantAccounts = new ArrayList<Account>();
+  private final List<Account> currentCompliantAccounts = new ArrayList<Account>();
 
   /**
    *
    * @param account
    */
   public void addToNonCompliantAccounts(Account account) {
-    if (currentFailedAccounts.contains(account)) {
+    if (currentNonCompliantAccounts.contains(account)) {
       throw new IllegalStateException();
     }
-    currentFailedAccounts.add(account);
+    currentNonCompliantAccounts.add(account);
   }
 
   /**
@@ -25,26 +25,26 @@ public abstract class ComplianceRule {
    * @param account
    */
   public void addToCompliantAccounts(Account account) {
-    if (currentPassedAccounts.contains(account)) {
+    if (currentCompliantAccounts.contains(account)) {
       throw new IllegalStateException();
     }
-    currentPassedAccounts.add(account);
+    currentCompliantAccounts.add(account);
   }
 
   /**
    *
    * @return
    */
-  public List<Account> getCurrentFailedAccounts() {
-    return this.currentFailedAccounts;
+  public List<Account> getNonCompliantAccounts() {
+    return this.currentNonCompliantAccounts;
   }
 
   /**
    *
    * @return
    */
-  public List<Account> getCurrentPassedAccounts() {
-    return this.currentPassedAccounts;
+  public List<Account> getCompliantAccounts() {
+    return this.currentCompliantAccounts;
   }
 
   /**
@@ -56,8 +56,8 @@ public abstract class ComplianceRule {
 
   /** Purges all accounts from the rules. */
   public void purgeAccounts() {
-    this.currentFailedAccounts.clear();
-    this.currentPassedAccounts.clear();
+    this.currentNonCompliantAccounts.clear();
+    this.currentCompliantAccounts.clear();
   }
 
   /**
@@ -65,7 +65,7 @@ public abstract class ComplianceRule {
    * @param account
    */
   public void removeFromComplianceLists(Account account) {
-    this.currentFailedAccounts.remove(account);
-    this.currentPassedAccounts.remove(account);
+    this.currentNonCompliantAccounts.remove(account);
+    this.currentCompliantAccounts.remove(account);
   }
 }
