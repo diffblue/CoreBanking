@@ -98,7 +98,7 @@ public class Account {
               + currentBalance
               + ". Not enough funds.");
     }
-    currentBalance += amount;
+    currentBalance -= amount;
   }
 
   /**
