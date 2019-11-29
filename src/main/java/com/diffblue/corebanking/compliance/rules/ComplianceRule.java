@@ -10,8 +10,8 @@ public abstract class ComplianceRule {
   private final List<Account> currentCompliantAccounts = new ArrayList<Account>();
 
   /**
-   *
-   * @param account
+   * Adds the passed account to the list of non-compliant accounts.
+   * @param account The non-compliant account.
    */
   public void addToNonCompliantAccounts(Account account) {
     if (currentNonCompliantAccounts.contains(account)) {
@@ -21,8 +21,8 @@ public abstract class ComplianceRule {
   }
 
   /**
-   *
-   * @param account
+   * Adds the passed account to the list of compliant accounts.
+   * @param account The compliant account.
    */
   public void addToCompliantAccounts(Account account) {
     if (currentCompliantAccounts.contains(account)) {
@@ -32,16 +32,25 @@ public abstract class ComplianceRule {
   }
 
   /**
-   *
-   * @return
+   * Makes sure the passed account is not in any compliance list.
+   * @param account The account to remove from all compliance lists.
+   */
+  public void removeFromComplianceLists(Account account) {
+    this.currentNonCompliantAccounts.remove(account);
+    this.currentCompliantAccounts.remove(account);
+  }
+
+  /**
+   * Returns the list of non-compliant accounts.
+   * @return The list of non-compliant accounts.
    */
   public List<Account> getNonCompliantAccounts() {
     return this.currentNonCompliantAccounts;
   }
 
   /**
-   *
-   * @return
+   * Returns the list of compliant accounts.
+   * @return The list of compliant accounts.
    */
   public List<Account> getCompliantAccounts() {
     return this.currentCompliantAccounts;
@@ -58,14 +67,5 @@ public abstract class ComplianceRule {
   public void purgeAccounts() {
     this.currentNonCompliantAccounts.clear();
     this.currentCompliantAccounts.clear();
-  }
-
-  /**
-   *
-   * @param account
-   */
-  public void removeFromComplianceLists(Account account) {
-    this.currentNonCompliantAccounts.remove(account);
-    this.currentCompliantAccounts.remove(account);
   }
 }
