@@ -50,5 +50,6 @@
         </configuration>
       </plugin>
     </plugins>
+    <testSourceDirectory>src/test/diffblue</testSourceDirectory>
   </build>
 </project>
