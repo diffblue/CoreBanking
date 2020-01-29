@@ -4,7 +4,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>io.diffblue.corebanking</groupId>
   <artifactId>CoreBanking</artifactId>
-  <version>1.0.0</version>
+  <version>1.0.1-JUnit4.13</version>
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.compiler.source>1.8</maven.compiler.source>
@@ -14,7 +14,7 @@
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
-      <version>4.8.2</version>
+      <version>4.13</version>
       <scope>test</scope>
     </dependency>
   </dependencies>
