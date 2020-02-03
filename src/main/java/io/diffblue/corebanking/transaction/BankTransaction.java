@@ -94,7 +94,10 @@ public class BankTransaction extends Transaction {
     }
   }
 
-  public void doBadTransaction() throws TransactionException {
-    throw new TransactionException("Cannot do bad transaction.");
+  public int doBadTransaction() throws TransactionException {
+    this.transactionState = TransactionState.FAILED;
+    if(this.transactionState == TransactionState.FAILED)
+      throw new TransactionException("Cannot do bad transaction.");
+    return -1;
   }
 }
