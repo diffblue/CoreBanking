@@ -93,4 +93,8 @@ public class BankTransaction extends Transaction {
       throw new TransactionException(e.getMessage());
     }
   }
+
+  public void doBadTransaction() throws TransactionException {
+    throw new TransactionException("Cannot do bad transaction.");
+  }
 }
