@@ -14,7 +14,7 @@ public class CoreBankingDataManagementMenuDiffblueTest {
     CoreBanking coreBanking = new CoreBanking();
 
     // Act and Assert
-    assertSame(coreBanking, (new CoreBankingDataManagementMenu(coreBanking)).coreBanking);
+    assertSame((new CoreBankingDataManagementMenu(coreBanking)).coreBanking, coreBanking);
   }
 
   @Test
