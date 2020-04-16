@@ -24,7 +24,6 @@ phases:
       - OS=ubuntu
       - JDK=openjdk8
       - echo "Entered the build phase"
-      - dpkg -i jcover_0.1-"`git show -s --format=%H | cut -c1-8`"_java-8-openjdk-amd64.deb
       - |
         eval $(ssh-agent)
         aws ssm get-parameter \
