@@ -32,6 +32,7 @@ phases:
           --query Parameter.Value \
           --name /codebuild-github-sshkeys/cover-dogfood-push-key | ssh-add -q -
       - |
+      - mvn clean test
 cache:
   paths:
     - '/var/cache/apt/**/*'
