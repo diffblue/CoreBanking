@@ -32,7 +32,11 @@ phases:
           --query Parameter.Value \
           --name /codebuild-github-sshkeys/cover-dogfood-push-key | ssh-add -q -
       - |
-      - mvn clean test
+      - COVER_FULL_SHA=$(git rev-parse $SHA)
+      - echo $COVER_FULL_SHA
+      - ls
+      - .codebuild/github-post-pr.sh "$COVER_FULL_SHA" "Test"
+      - mvn clean test -B
 cache:
   paths:
     - '/var/cache/apt/**/*'
