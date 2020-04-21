@@ -16,7 +16,6 @@ PR=$(curl -s GET \
    https://api.github.com/repos/diffblue/CoreBanking/commits/$COVER_FULL_SHA/pulls | jq --arg COVER_FULL_SHA "$COVER_FULL_SHA" '.[] | select(.head.sha == $COVER_FULL_SHA) | .url' | sed 's~^.*\/\([0-9]*\)"$~\1~' || true
 )
 
-echo "$PR"
 # post catfood branch link to PR
 COVER_BRANCH_URL=https://api.github.com/repos/diffblue/CoreBanking/issues/"$PR"/comments
 curl --location --request POST "${COVER_BRANCH_URL}" \
