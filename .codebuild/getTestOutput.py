@@ -9,9 +9,11 @@ for line in sys.argv[1].split("\n"):
     if "Tests run:" in line and "Time elapsed:" not in line:
         foundTestsRun = True
         foundResults = False
-        print(line)
+        print("\\n" + line)
     if foundResults and "expected" in line:
-        #if "Failed tests:   " in line:
-            #print("Failed Tests:")
+        if "Failed tests:   " in line:
+            print("Failed Tests:\\n", end = "")
         line = line.replace("Failed tests: ", "")
-        #print(line.split("(")[0] +  "() from " + line.split("(")[1].split(")")[0] + "")
+        methodName = line.split("(")[0]
+        location = line.split("(")[1].split(")")[0] 
+        print("- [" + methodName +  "()](https://github.com/diffblue/CoreBanking/blob/dcover-demo-master/src/test/java/" + location.replace(".", "/") + ".java) from " + location + "\\n", end = "")
