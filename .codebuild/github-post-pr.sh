@@ -7,6 +7,7 @@
 set -euvo pipefail
 COVER_FULL_SHA=$1
 MESSAGE=$2
+echo "$MESSAGE"
 
 # get PR number from commit
 PR=$(curl -s GET \
