@@ -33,9 +33,10 @@ phases:
           --name /codebuild-github-sshkeys/cover-dogfood-push-key | ssh-add -q -
       - |
       - FULL_SHA=$(git rev-parse HEAD)
-      - echo "$FULL_SHA"
-      - .codebuild/github-post-pr.sh "$FULL_SHA" "Test"
-      - mvn clean test -B
+      - mavenOutput="$(mvn clean test -B)" || True
+      - echo "$mavenOutput"
+      - PR_TEXT=$(python3 .codebuild/getTestOutput.py "$mavenOutput")
+      - .codebuild/github-post-pr.sh "$FULL_SHA" "$PR_TEXT"
 cache:
   paths:
     - '/var/cache/apt/**/*'
