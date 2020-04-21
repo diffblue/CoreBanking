@@ -23,7 +23,6 @@ phases:
       - if [ ! -d ".git" ]; then .codebuild/include_git_dir.sh "https://github.com/diffblue/jcover.git" ${CODEBUILD_RESOLVED_SOURCE_VERSION}; fi
       - OS=ubuntu
       - JDK=openjdk8
-      - echo "Entered the build phase"
       - |
         eval $(ssh-agent)
         aws ssm get-parameter \
@@ -33,7 +32,7 @@ phases:
           --name /codebuild-github-sshkeys/cover-dogfood-push-key | ssh-add -q -
       - |
       - FULL_SHA=$(git rev-parse HEAD)
-      - mvn clean test -B 2>&1 | tee mavenOutput.txt
+      - .codebuild/runTests.sh
   post_build:
     commands:
       - PR_TEXT=$(python3 .codebuild/getTestOutput.py "$(cat mavenOutput.txt)")
