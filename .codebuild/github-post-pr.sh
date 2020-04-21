@@ -7,6 +7,7 @@
 set -euvo pipefail
 COVER_FULL_SHA=$1
 MESSAGE=$2
+echo "$MESSAGE"
 
 # get PR number from commit
 PR=$(curl -s GET \
@@ -22,4 +23,4 @@ curl --location --request POST "${COVER_BRANCH_URL}" \
   --header "Content-Type: application/json" \
   --header "Authorization: Bearer ${GITHUB_CI_STATUS_TOKEN}" \
   --header "Content-Type: application/json" \
-  --data-raw "{\"body\": \"$MESSAGE\"}"
+  --data-raw "{\"body\": \"Test\"}"
