@@ -14,6 +14,16 @@ for line in sys.argv[1].split("\n"):
         if "Failed tests:   " in line:
             print("Failed Tests:\\n", end = "")
         line = line.replace("Failed tests: ", "")
-        methodName = line.split("(")[0]
-        location = line.split("(")[1].split(")")[0] 
-        print("- [" + methodName +  "()](https://github.com/diffblue/CoreBanking/blob/dcover-demo-master/src/test/java/" + location.replace(".", "/") + ".java) from " + location + "\\n", end = "")
+        methodName = line.split("(")[0].replace("  ", "")
+        location = line.split("(")[1].split(")")[0]
+        methodLine = ""
+        try:
+            file = open("src/test/java/" + location.replace(".", "/") + ".java")
+            currentLine = 1
+            for line in file:
+                if "public void " + methodName + "()" in line:
+                    methodLine = "#L" + str(currentLine)
+                currentLine += 1
+        except:
+            print("")  # Need a better solution for this
+        print("- [" + methodName +  "()](https://github.com/diffblue/CoreBanking/blob/dcover-demo-master/src/test/java/" + location.replace(".", "/") + ".java" + methodLine + ") from " + location + "\\n", end = "")
