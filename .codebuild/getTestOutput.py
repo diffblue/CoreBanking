@@ -14,4 +14,4 @@ for line in sys.argv[1].split("\n"):
         if "Failed tests:   " in line:
             print("Failed Tests:")
         line = line.replace("Failed tests: ", "")
-        print(line.split("(")[0] +  "() from \"" + line.split("(")[1].split(")")[0] + "\"")
+        print(line.split("(")[0] +  "() from " + line.split("(")[1].split(")")[0] + "")
