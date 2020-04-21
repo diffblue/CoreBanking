@@ -33,7 +33,8 @@ phases:
           --name /codebuild-github-sshkeys/cover-dogfood-push-key | ssh-add -q -
       - |
       - FULL_SHA=$(git rev-parse HEAD)
-      - mvn clean test -B 2>&1 | tee mavenOutput.txt
+      - mvn clean test
+      - mvn clean test 2>&1 | tee mavenOutput.txt
 cache:
   paths:
     - '/var/cache/apt/**/*'
