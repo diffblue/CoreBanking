@@ -34,10 +34,6 @@ phases:
       - |
       - FULL_SHA=$(git rev-parse HEAD)
       - mvn clean test -B 2>&1 | tee mavenOutput.txt
-  post_build:
-    commands:
-      - PR_TEXT=$(python3 .codebuild/getTestOutput.py "$(cat mavenOutput.txt)")
-      - .codebuild/github-post-pr.sh "$FULL_SHA" "$PR_TEXT"
 cache:
   paths:
     - '/var/cache/apt/**/*'
