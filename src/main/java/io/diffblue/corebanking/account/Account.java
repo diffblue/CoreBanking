@@ -114,7 +114,7 @@ public class Account {
     if (getAccountState() != AccountState.OPEN) {
       throw new AccountException("Cannot add to balance, account is closed.");
     }
-    currentBalance -= amount;
+    currentBalance += amount;
   }
 
   /**
