@@ -16,7 +16,7 @@ for line in sys.argv[1].split("\n"):
         line = line.replace("Failed tests: ", "")
         methodName = line.split("(")[0].replace("  ", "")
         location = line.split("(")[1].split(")")[0]
-        failMessage = line.split(":", 1)[1].replace("\n", "").replace(":", "").replace(".", "").replace("|", "").replace("\t", "")
+        failMessage = line.split(":", 1)[1].replace("\n", "").replace("\t", " ")
         #failMessage = "expectedount10  Balance20   Transactionstatbutwasount10 Balance0    Transactionstat"
         methodLine = ""
         try:
