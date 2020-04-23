@@ -36,6 +36,7 @@ phases:
   post_build:
     commands:
       - PR_TEXT=$(python3 .codebuild/getTestOutput.py "$(cat mavenOutput.txt)")
+      - echo "$PR_TEXT"
       - .codebuild/github-post-pr.sh "$FULL_SHA" "$PR_TEXT"
 cache:
   paths:
