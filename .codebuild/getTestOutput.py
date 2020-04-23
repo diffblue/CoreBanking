@@ -16,6 +16,8 @@ for line in sys.argv[1].split("\n"):
         line = line.replace("Failed tests: ", "")
         methodName = line.split("(")[0].replace("  ", "")
         location = line.split("(")[1].split(")")[0]
+        failMessage = line.split(":", 1)[1].replace("\n", "").replace(":", "").replace(".", "").replace("|", "").replace("<", "").replace(">", "").replace("[", "").replace("]", "").replace(" ", "").replace("\t", "")
+        #failMessage = "expectedount10  Balance20   Transactionstatbutwasount10 Balance0    Transactionstat"
         methodLine = ""
         try:
             file = open("src/test/java/" + location.replace(".", "/") + ".java")
@@ -26,4 +28,4 @@ for line in sys.argv[1].split("\n"):
                 currentLine += 1
         except:
             print("")  # Need a better solution for this
-        print("- [" + methodName +  "()](https://github.com/diffblue/CoreBanking/blob/dcover-demo-master/src/test/java/" + location.replace(".", "/") + ".java" + methodLine + ") from " + location + "\\n", end = "")
+        print("- [" + methodName +  "()](https://github.com/diffblue/CoreBanking/blob/dcover-demo-master/src/test/java/" + location.replace(".", "/") + ".java" + methodLine + ") from " + location + "\\n" + failMessage + "\\n", end = "")
