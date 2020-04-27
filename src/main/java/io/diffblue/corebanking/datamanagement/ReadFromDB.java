@@ -37,7 +37,7 @@ public class ReadFromDB {
     // Client 3
     Client client3 = new Client("Emily Simmons");
 
-    Account acc1cli3 = coreBanking.openNewAccount(client3, 100);
+    Account acc1cli3 = coreBanking.openNewAccount(client3, 100, 300);
 
     // Add clients to coreBanking.
     coreBanking.registerNewClient(client1);
