@@ -15,12 +15,27 @@ phases:
       - export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
       - git config --global user.email "contributions@diffblue.com"
       - git config --global user.name "Diffblue Cover Bot"
+      - git remote set-url origin "git@github.com:diffblue/CoreBanking.git"
       - apt-get update -y
       - apt-get install -y
           bc
+      # get branch name
+      - |
+        SHA=$(git rev-parse HEAD)
+        # CODEBUILD_WEBHOOK_HEAD_REF isn't set if you retry a build so we have to do this instead!
+        if [ -z "$CODEBUILD_WEBHOOK_HEAD_REF" ]; then
+          export CODEBUILD_WEBHOOK_HEAD_REF=`git symbolic-ref HEAD --short 2>/dev/null`
+          if [ -z "$CODEBUILD_WEBHOOK_HEAD_REF" ]; then
+            CODEBUILD_WEBHOOK_HEAD_REF=`git branch -a --contains HEAD | sed -n 2p | awk '{ printf $1 }'`
+            export CODEBUILD_WEBHOOK_HEAD_REF=${CODEBUILD_WEBHOOK_HEAD_REF#remotes/origin/}
+          fi
+        fi
+      - BRANCH=$(git rev-parse --abbrev-ref "$CODEBUILD_WEBHOOK_HEAD_REF")
+      - echo "WebhookRef:$CODEBUILD_WEBHOOK_HEAD_REF"
+      - echo "Branch - $BRANCH"
+      - git checkout "$BRANCH"
   build:
     commands:
-      - if [ ! -d ".git" ]; then .codebuild/include_git_dir.sh "https://github.com/diffblue/jcover.git" ${CODEBUILD_RESOLVED_SOURCE_VERSION}; fi
       - OS=ubuntu
       - JDK=openjdk8
       - wget "$DCOVER_LINUX_RELEASE_URL"
@@ -33,19 +48,20 @@ phases:
           --query Parameter.Value \
           --name /codebuild-github-sshkeys/cover-dogfood-push-key | ssh-add -q -
       - |
-      - FULL_SHA=$(git rev-parse HEAD)
-      - git branch
-      - mvn clean compile
-      - ls
+      - mvn clean compile -B
       - timeout 360 ./dcover create -d src/dcover/java --skip-test-verification --batch
       - git add src/dcover
       - git commit -m "Add diffblue tests"
+      - git branch
+      - git config --global user.name
+      - git push origin "$BRANCH"
+      - NEW_SHA=$(git rev-parse HEAD)
         #- .codebuild/runTests.sh
         #post_build:
         #commands:
             #- PR_TEXT=$(python3 .codebuild/getTestOutput.py "$(cat mavenOutput.txt)")
             #- echo "$PR_TEXT"
-        #- .codebuild/github-post-pr.sh "$FULL_SHA" "$PR_TEXT"
+      - .codebuild/github-post-pr.sh "$NEW_SHA" "Diffblue has found some code changes please check these are intended $NEW_SHA"
 cache:
   paths:
     - '/var/cache/apt/**/*'
