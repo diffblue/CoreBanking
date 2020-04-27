@@ -18,6 +18,7 @@ phases:
       - apt-get update -y
       - apt-get install -y
           bc
+      - curl -fsSL https://raw.githubusercontent.com/thii/aws-codebuild-extras/master/install
   build:
     commands:
       - OS=ubuntu
@@ -35,10 +36,10 @@ phases:
       - FULL_SHA=$(git rev-parse HEAD)
       - git branch
       - mvn clean compile
-      - ls
       - timeout 360 ./dcover create -d src/dcover/java --skip-test-verification --batch
       - git add src/dcover
       - git commit -m "Add diffblue tests"
+      - echo "$CODEBUILD_GIT_BRANCH"
         #- .codebuild/runTests.sh
         #post_build:
         #commands:
