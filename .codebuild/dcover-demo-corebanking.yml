@@ -22,6 +22,8 @@ phases:
     commands:
       - OS=ubuntu
       - JDK=openjdk8
+      - wget  https://release.diffblue.com/2020.04.a/e4dd2b989dcc690a6bc1a45a5e399b966eb3a0286708d28bb572c9936b3530bb/diffblue-cover-cli-2020.04.a-linux.zip
+      - unzip diffblue-cover-cli-2020.04.a-linux.zip
       - |
         eval $(ssh-agent)
         aws ssm get-parameter \
@@ -33,7 +35,8 @@ phases:
       - FULL_SHA=$(git rev-parse HEAD)
       - git branch
       - mvn clean compile
-      - .codebuild/dcover/dcover create -d src/dcover/java
+      - ls
+      - timeout 360 ./dcover create -d src/dcover/java --skip-test-verification
       - git add src/dcover
       - git commit -m "Add diffblue tests"
         #- .codebuild/runTests.sh
