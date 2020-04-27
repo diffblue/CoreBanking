@@ -24,6 +24,7 @@ if [ $(git config --get remote.origin.url)"" == "git@github.com:diffblue/CoreBan
 			git add src/main/java
 			git commit -m "Add overdrafts to Corebanking back end"
 			git push origin "$branchName"
+			git checkout "$masterBranch"
 			google-chrome "https://github.com/diffblue/CoreBanking/compare/$masterBranch...$branchName?expand=1"
 		else
 			echo "Cannot find file 'src/main/java/io/diffblue/corebanking/account/Account.java'. Are you sure you are at the root of the project"
