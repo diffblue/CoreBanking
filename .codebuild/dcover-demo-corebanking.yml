@@ -20,8 +20,11 @@ phases:
           bc
   build:
     commands:
+      - if [ ! -d ".git" ]; then .codebuild/include_git_dir.sh "https://github.com/diffblue/jcover.git" ${CODEBUILD_RESOLVED_SOURCE_VERSION}; fi
       - OS=ubuntu
       - JDK=openjdk8
+      - wget "$DCOVER_LINUX_RELEASE_URL"
+      - unzip diffblue-cover-cli-2020.04.a-linux.zip
       - |
         eval $(ssh-agent)
         aws ssm get-parameter \
@@ -33,7 +36,8 @@ phases:
       - FULL_SHA=$(git rev-parse HEAD)
       - git branch
       - mvn clean compile
-      - .codebuild/dcover/dcover create -d src/dcover/java
+      - ls
+      - timeout 360 ./dcover create -d src/dcover/java --skip-test-verification --batch
       - git add src/dcover
       - git commit -m "Add diffblue tests"
         #- .codebuild/runTests.sh
