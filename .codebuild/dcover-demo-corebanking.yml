@@ -1,0 +1,45 @@
+version: 0.2  # Always use version 2
+env:
+  git-credential-helper: yes
+  exported-variables:
+    - VERSION
+    - OS
+    - JDK
+phases:
+  install:
+    runtime-versions:
+      java: openjdk8
+    commands:
+      - echo "Entered the install phase"
+      - .codebuild/install_ubuntu.sh
+      - export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
+      - git config --global user.email "contributions@diffblue.com"
+      - git config --global user.name "Diffblue Cover Bot"
+      - apt-get update -y
+      - apt-get install -y
+          bc
+  build:
+    commands:
+      - if [ ! -d ".git" ]; then .codebuild/include_git_dir.sh "https://github.com/diffblue/jcover.git" ${CODEBUILD_RESOLVED_SOURCE_VERSION}; fi
+      - OS=ubuntu
+      - JDK=openjdk8
+      - |
+        eval $(ssh-agent)
+        aws ssm get-parameter \
+          --with-decryption \
+          --output text \
+          --query Parameter.Value \
+          --name /codebuild-github-sshkeys/cover-dogfood-push-key | ssh-add -q -
+      - |
+      - FULL_SHA=$(git rev-parse HEAD)
+      - .codebuild/runTests.sh
+  post_build:
+    commands:
+      - PR_TEXT=$(python3 .codebuild/getTestOutput.py "$(cat mavenOutput.txt)")
+      - echo "$PR_TEXT"
+      - .codebuild/github-post-pr.sh "$FULL_SHA" "$PR_TEXT"
+cache:
+  paths:
+    - '/var/cache/apt/**/*'
+    - '/var/lib/apt/lists/**/*'
+    - '/root/.m2/**/*'
