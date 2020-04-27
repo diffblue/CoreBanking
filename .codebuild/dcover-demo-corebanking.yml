@@ -36,7 +36,7 @@ phases:
       - git branch
       - mvn clean compile
       - ls
-      - timeout 360 ./dcover create -d src/dcover/java --skip-test-verification
+      - timeout 360 ./dcover create -d src/dcover/java --skip-test-verification --batch
       - git add src/dcover
       - git commit -m "Add diffblue tests"
         #- .codebuild/runTests.sh
