@@ -20,7 +20,6 @@ phases:
           bc
   build:
     commands:
-      - if [ ! -d ".git" ]; then .codebuild/include_git_dir.sh "https://github.com/diffblue/jcover.git" ${CODEBUILD_RESOLVED_SOURCE_VERSION}; fi
       - OS=ubuntu
       - JDK=openjdk8
       - |
@@ -32,12 +31,17 @@ phases:
           --name /codebuild-github-sshkeys/cover-dogfood-push-key | ssh-add -q -
       - |
       - FULL_SHA=$(git rev-parse HEAD)
-      - .codebuild/runTests.sh
-  post_build:
-    commands:
-      - PR_TEXT=$(python3 .codebuild/getTestOutput.py "$(cat mavenOutput.txt)")
-      - echo "$PR_TEXT"
-      - .codebuild/github-post-pr.sh "$FULL_SHA" "$PR_TEXT"
+      - git branch
+      - mvn clean compile
+      - .codebuild/dcover/dcover create -d src/dcover/java
+      - git add src/dcover
+      - git commit -m "Add diffblue tests"
+        #- .codebuild/runTests.sh
+        #post_build:
+        #commands:
+            #- PR_TEXT=$(python3 .codebuild/getTestOutput.py "$(cat mavenOutput.txt)")
+            #- echo "$PR_TEXT"
+        #- .codebuild/github-post-pr.sh "$FULL_SHA" "$PR_TEXT"
 cache:
   paths:
     - '/var/cache/apt/**/*'
