@@ -15,6 +15,7 @@ public class Account {
   private long currentBalance;
   private String accountName;
   private AccountState accountState;
+  private long overdraftLimit;
 
   /**
    * The constructor.
@@ -29,6 +30,24 @@ public class Account {
     currentBalance = amount;
     accountName = "Current";
     accountState = AccountState.OPEN;
+    overdraftLimit = 0;
+  }
+
+  /**
+   * The second constructor.
+   *
+   * @param accountNumber The account number for the account.
+   * @param client The client owner of the account.
+   * @param amount The initial amount in the account.
+   * @param overdraftLimit The initial limit of the overdraft for this account.
+   */
+  public Account(final long accountNumber, final Client client, final long amount, final long overdraftLimit) {
+    this.accountNumber = accountNumber;
+    this.client = client;
+    currentBalance = amount;
+    accountName = "Current";
+    accountState = AccountState.OPEN;
+    this.overdraftLimit = overdraftLimit;
   }
 
   /**
@@ -68,6 +87,24 @@ public class Account {
   }
 
   /**
+   * Returns the size of the overdraft.
+   *
+   * @return The current overdraft limit.
+   */
+  public long getCurrentOverdraftLimit() {
+    return overdraftLimit;
+  }
+
+  /**
+   * Returns the total available credit.
+   *
+   * @return The credit available.
+   */
+  public long getCurrentCredit() {
+    return currentBalance + overdraftLimit;
+  }
+
+  /**
    * Adds the passed amount to the balance of the account.
    *
    * @param amount The amount to add to the balance.
@@ -77,7 +114,7 @@ public class Account {
     if (getAccountState() != AccountState.OPEN) {
       throw new AccountException("Cannot add to balance, account is closed.");
     }
-    currentBalance += amount;
+    currentBalance -= amount;
   }
 
   /**
@@ -91,7 +128,7 @@ public class Account {
     if (getAccountState() != AccountState.OPEN) {
       throw new AccountException("Cannot take from balance, account is closed.");
     }
-    if (currentBalance + amount < 0) {
+    if (currentBalance + amount - overdraftLimit < 0) {
       throw new AccountException(
           "Trying to take "
               + amount
@@ -122,6 +159,19 @@ public class Account {
       throw new AccountException("Cannot change account name, account is closed.");
     }
     this.accountName = accountName;
+  }
+
+  /**
+   * Sets the overdraft limit to the passed long.
+   *
+   * @param overdraftLimit The size fo the new overdraft.
+   * @throws AccountException If the account is not in an OPEN state.
+   */
+  public void setOverdraftLimit(final long overdraftLimit) throws AccountException {
+    if (getAccountState() != AccountState.OPEN) {
+      throw new AccountException("Cannot change overdraft limit, account is closed.");
+    }
+    this.overdraftLimit = overdraftLimit;
   }
 
   /**

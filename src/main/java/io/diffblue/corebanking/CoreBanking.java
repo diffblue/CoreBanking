@@ -62,6 +62,22 @@ public class CoreBanking {
   }
 
   /**
+   * Opens a new account with an overdraft.
+   *
+   * @param client The client that will own the account.
+   * @param amount The initial amount in the account.
+   * @param overdraft The initial size of the overdraft for the account.
+   * @return THe newly created account.
+   */
+  public Account openNewAccount(Client client, long amount, long overdraft) {
+    long accNumber = generateValidAccountNumber();
+    Account account = new Account(accNumber, client, amount, overdraft);
+    this.accounts.add(account);
+    client.addAccount(account);
+    return account;
+  }
+
+  /**
    * Adds the passed client to the clients in the core banking app.
    *
    * @param client The client to add to the core banking.
