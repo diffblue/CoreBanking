@@ -34,6 +34,7 @@ phases:
           --name /codebuild-github-sshkeys/cover-dogfood-push-key | ssh-add -q -
       - |
       - FULL_SHA=$(git rev-parse HEAD)
+      - git checkout "$FULL_SHA"
       - git branch
       - mvn clean compile
       - ls
