@@ -20,6 +20,7 @@ phases:
           bc
   build:
     commands:
+      - if [ ! -d ".git" ]; then .codebuild/include_git_dir.sh "https://github.com/diffblue/jcover.git" ${CODEBUILD_RESOLVED_SOURCE_VERSION}; fi
       - OS=ubuntu
       - JDK=openjdk8
       - wget  https://release.diffblue.com/2020.04.a/e4dd2b989dcc690a6bc1a45a5e399b966eb3a0286708d28bb572c9936b3530bb/diffblue-cover-cli-2020.04.a-linux.zip
