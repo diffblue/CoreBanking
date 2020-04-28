@@ -7,11 +7,6 @@ import io.diffblue.corebanking.client.Client;
 import org.junit.Test;
 
 public class CoreBankingDiffblueTest {
-  @Test
-  public void testConstructor() {
-    // Arrange, Act and Assert
-    assertEquals("", (new CoreBanking()).toString());
-  }
 
   @Test
   public void testPurgeCoreBanking() {
@@ -51,12 +46,6 @@ public class CoreBankingDiffblueTest {
     // Act and Assert
     assertSame(client, coreBanking.registerNewClient(client));
     assertEquals("Client name: \n", coreBanking.toString());
-  }
-
-  @Test
-  public void testToString() {
-    // Arrange, Act and Assert
-    assertEquals("", (new CoreBanking()).toString());
   }
 }
 
