@@ -48,8 +48,6 @@ phases:
           --query Parameter.Value \
           --name /codebuild-github-sshkeys/cover-dogfood-push-key | ssh-add -q -
       - |
-      - mvn clean compile -B
-      - timeout 360 ./dcover create -d src/dcover/java --skip-test-verification --batch
       - .codebuild/dogfooding-demo.sh "$BRANCH" "$SHA"
 cache:
   paths:
