@@ -18,6 +18,21 @@ phases:
       - apt-get update -y
       - apt-get install -y
           bc
+      - echo "Entered the pre_build phase"
+      # get branch name
+      - |
+        SHA=$(git rev-parse HEAD)
+        # CODEBUILD_WEBHOOK_HEAD_REF isn't set if you retry a build so we have to do this instead!
+        if [ -z "$CODEBUILD_WEBHOOK_HEAD_REF" ]; then
+          export CODEBUILD_WEBHOOK_HEAD_REF=`git symbolic-ref HEAD --short 2>/dev/null`
+          if [ -z "$CODEBUILD_WEBHOOK_HEAD_REF" ]; then
+            CODEBUILD_WEBHOOK_HEAD_REF=`git branch -a --contains HEAD | sed -n 2p | awk '{ printf $1 }'`
+            export CODEBUILD_WEBHOOK_HEAD_REF=${CODEBUILD_WEBHOOK_HEAD_REF#remotes/origin/}
+          fi
+        fi
+      - BRANCH=$(git rev-parse --abbrev-ref "$CODEBUILD_WEBHOOK_HEAD_REF")
+      - echo "WebhookRef:$CODEBUILD_WEBHOOK_HEAD_REF"
+      - echo "Branch - $BRANCH"
   build:
     commands:
       - if [ ! -d ".git" ]; then .codebuild/include_git_dir.sh "https://github.com/diffblue/jcover.git" ${CODEBUILD_RESOLVED_SOURCE_VERSION}; fi
