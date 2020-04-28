@@ -51,9 +51,7 @@ phases:
       - mvn clean compile -B
       - timeout 360 ./dcover create -d src/dcover/java --skip-test-verification --batch
       - git add src/dcover
-      - git commit -m "Add diffblue tests"
-      - git branch
-      - git config --global user.name
+      - git commit -m "Add diffblue tests" || True
       - git push origin "$BRANCH"
       - NEW_SHA=$(git rev-parse HEAD)
         #- .codebuild/runTests.sh
@@ -61,7 +59,9 @@ phases:
         #commands:
             #- PR_TEXT=$(python3 .codebuild/getTestOutput.py "$(cat mavenOutput.txt)")
             #- echo "$PR_TEXT"
-      - .codebuild/github-post-pr.sh "$NEW_SHA" "Diffblue has found some code changes please check these are intended $NEW_SHA"
+      - echo "$SHA"
+      - echo "$NEW_SHA"
+      - .codebuild/github-post-pr.sh "$SHA" "Diffblue has found some code changes please check these are intended $NEW_SHA"
 cache:
   paths:
     - '/var/cache/apt/**/*'
