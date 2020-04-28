@@ -15,6 +15,7 @@ phases:
       - export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
       - git config --global user.email "contributions@diffblue.com"
       - git config --global user.name "Diffblue Cover Bot"
+      - git remote set-url origin "git@github.com:Diffblue Cover Bot/git@github.com:diffblue/CoreBanking.git"
       - apt-get update -y
       - apt-get install -y
           bc
@@ -48,7 +49,6 @@ phases:
           --name /codebuild-github-sshkeys/cover-dogfood-push-key | ssh-add -q -
       - |
       - mvn clean compile -B
-      - ls
       - timeout 360 ./dcover create -d src/dcover/java --skip-test-verification --batch
       - git add src/dcover
       - git commit -m "Add diffblue tests"
