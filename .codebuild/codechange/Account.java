@@ -229,6 +229,9 @@ public class Account {
             + "Acc balance: "
             + getCurrentBalance()
             + "\t | "
+            + "Acc overdraft limit: "
+            + getCurrentOverdraftLimit()
+            + "\t | "
             + "Acc state: "
             + getAccountState()
             + "\t |\n";

@@ -1,7 +1,7 @@
 #! /usr/bin/env bash
 
 if [ $(git config --get remote.origin.url)"" == "git@github.com:diffblue/CoreBanking.git" ]; then
-	if [ $(git name-rev --name-only HEAD)"" == "dcover-demo-master" ]; then
+	if [ $(git name-rev --name-only HEAD)"" == "dcover-notrivial-tests-demo" ]; then
 		if [ -f "src/main/java/io/diffblue/corebanking/account/Account.java" ]; then
 			#Get branch
 			branchName=dcover-demo-$(date +'%d/%m-%H%M%S')
@@ -22,7 +22,7 @@ if [ $(git config --get remote.origin.url)"" == "git@github.com:diffblue/CoreBan
 			git add src/main/java
 			git commit -m "Add overdrafts to Corebanking back end"
 			git push origin "$branchName"
-			google-chrome https://github.com/diffblue/CoreBanking/compare/dcover-demo-master...$branchName?expand=1
+			google-chrome https://github.com/diffblue/CoreBanking/compare/dcover-notrivial-tests-demo...$branchName?expand=1
 		else
 			echo "Cannot find file 'src/main/java/io/diffblue/corebanking/account/Account.java'. Are you sure you are at the root of the project"
 		fi

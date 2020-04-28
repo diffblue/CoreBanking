@@ -133,6 +133,9 @@ public abstract class Transaction {
             + "Balance: "
             + this.accountBalanceAfterTransaction
             + "\t| "
+            + "Credit: "
+            + this.accountCreditAfterTransaction
+            + "\t| "
             + "Transaction state: "
             + this.getTransactionState()
             + "\t|";
