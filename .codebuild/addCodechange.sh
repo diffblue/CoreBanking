@@ -1,6 +1,6 @@
 #! /usr/bin/env bash
 
-masterBranch="dcover-dogfooding-master"
+masterBranch="dcover-dogfooding-noTrivial"
 
 if [ $(git config --get remote.origin.url)"" == "git@github.com:diffblue/CoreBanking.git" ]; then
 	if [ $(git name-rev --name-only HEAD)"" == "$masterBranch" ]; then
