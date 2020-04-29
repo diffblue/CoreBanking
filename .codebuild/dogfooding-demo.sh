@@ -6,6 +6,7 @@ BRANCH="$1"
 SHA="$2"
 mvn clean compile -B 
 timeout 360 ./dcover create -d src/dcover/java --skip-test-verification --batch
+python3 .codebuild/removeTrivialTests.py
 
 if [ "$BRANCH" != "dcover-dogfooding-master" ]
 then
