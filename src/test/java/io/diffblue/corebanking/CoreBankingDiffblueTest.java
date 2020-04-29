@@ -9,18 +9,6 @@ import org.junit.Test;
 public class CoreBankingDiffblueTest {
 
   @Test
-  public void testPurgeCoreBanking() {
-    // Arrange
-    CoreBanking coreBanking = new CoreBanking();
-
-    // Act
-    coreBanking.purgeCoreBanking();
-
-    // Assert
-    assertEquals("", coreBanking.toString());
-  }
-
-  @Test
   public void testOpenNewAccount() {
     // Arrange
     CoreBanking coreBanking = new CoreBanking();
@@ -34,7 +22,6 @@ public class CoreBankingDiffblueTest {
     assertEquals(Account.AccountState.OPEN, actualOpenNewAccountResult.getAccountState());
     assertSame(client, actualOpenNewAccountResult.getClient());
     assertEquals(10L, actualOpenNewAccountResult.getCurrentBalance());
-    assertEquals("Account statement empty.", actualOpenNewAccountResult.getAccountStatement().toString());
   }
 
   @Test
@@ -45,7 +32,6 @@ public class CoreBankingDiffblueTest {
 
     // Act and Assert
     assertSame(client, coreBanking.registerNewClient(client));
-    assertEquals("Client name: \n", coreBanking.toString());
   }
 }
 

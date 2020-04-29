@@ -57,9 +57,6 @@ public class CashTransactionDiffblueTest {
 
     // Assert
     assertEquals(Transaction.TransactionState.EXECUTED, cashTransaction.getTransactionState());
-    assertEquals("Transaction: | 70.01.01\t| Source: CASH\t| Target:"
-        + " 1234567890\t| Amount: 10\t| Balance: 20\t| Transaction" + " state: EXECUTED\t|",
-        cashTransaction.toString());
   }
 
   @Test
@@ -74,10 +71,6 @@ public class CashTransactionDiffblueTest {
 
     // Assert
     assertEquals(Transaction.TransactionState.FAILED, cashTransaction.getTransactionState());
-    assertEquals(
-        "Transaction: | 70.01.01\t| Source: 1234567890\t| Target:"
-            + " CASH\t| Amount: -9223372036854775808\t| Balance: 10" + "\t| Transaction state: FAILED\t|",
-        cashTransaction.toString());
   }
 
   @Test
@@ -91,8 +84,6 @@ public class CashTransactionDiffblueTest {
 
     // Assert
     assertEquals(Transaction.TransactionState.EXECUTED, cashTransaction.getTransactionState());
-    assertEquals("Transaction: | 70.01.01\t| Source: 1234567890\t| Target:"
-        + " CASH\t| Amount: -1\t| Balance: 11\t| Transaction state:" + " EXECUTED\t|", cashTransaction.toString());
   }
 }
 

@@ -58,20 +58,5 @@ public class AccountDiffblueTest {
     // Assert
     assertEquals(Account.AccountState.CLOSED, account.getAccountState());
   }
-
-  @Test
-  public void testAddTransaction() throws AccountException {
-    // Arrange
-    Account account = new Account(1234567890L, new Client(""), 10L);
-    Date date = new Date(1L);
-
-    // Act
-    account.addTransaction(new CashTransaction(10L, date, new Account(1234567890L, new Client(""), 10L)));
-
-    // Assert
-    assertEquals("Transaction: | 70.01.01\t| Source: CASH\t| Target:"
-        + " 1234567890\t| Amount: 10\t| Balance: 0\t| Transaction" + " state: NOT_EXECUTED_YET\t|\n",
-        account.getAccountStatement().toString());
-  }
 }
 
