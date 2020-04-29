@@ -8,14 +8,6 @@ import java.util.List;
 import org.junit.Test;
 
 public class CoreBankingDataManagementMenuDiffblueTest {
-  @Test
-  public void testConstructor() {
-    // Arrange
-    CoreBanking coreBanking = new CoreBanking();
-
-    // Act and Assert
-    assertSame((new CoreBankingDataManagementMenu(coreBanking)).coreBanking, coreBanking);
-  }
 
   @Test
   public void testExecuteMenuOption() {
