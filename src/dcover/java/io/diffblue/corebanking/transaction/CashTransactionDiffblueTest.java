@@ -15,7 +15,8 @@ public class CashTransactionDiffblueTest {
     Date date = new Date(1L);
 
     // Act and Assert
-    assertEquals("CASH", (new CashTransaction(10L, date, new Account(1234567890L, new Client(""), 10L))).getSource());
+    assertEquals("1234567890",
+        (new CashTransaction(-1L, date, new Account(1234567890L, new Client(""), 10L))).getSource());
   }
 
   @Test
@@ -24,8 +25,7 @@ public class CashTransactionDiffblueTest {
     Date date = new Date(1L);
 
     // Act and Assert
-    assertEquals("1234567890",
-        (new CashTransaction(-1L, date, new Account(1234567890L, new Client(""), 10L))).getSource());
+    assertEquals("CASH", (new CashTransaction(10L, date, new Account(1234567890L, new Client(""), 10L))).getSource());
   }
 
   @Test
