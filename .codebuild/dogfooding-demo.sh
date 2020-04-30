@@ -8,7 +8,7 @@ mvn clean compile -B
 timeout 360 ./dcover create -d src/dcover/java --skip-test-verification --batch
 python3 .codebuild/removeTrivialTests.py
 
-if [ "$BRANCH" != "dcover-dogfooding-master" ]
+if [ "$BRANCH" != "dcover-dogfooding-noTrivial" ]
 then
 	git add src/dcover
 	git commit -m "Add diffblue tests" || true
