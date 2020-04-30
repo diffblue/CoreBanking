@@ -78,10 +78,12 @@ public class CashTransaction extends Transaction {
         account.takeFromBalance(this.getTransactionAmount());
       }
       this.setAccountBalanceAfterTransaction(this.account.getCurrentBalance());
+      this.setAccountCreditAfterTransaction(this.account.getCurrentCredit());
       this.markTransactionAsExecuted();
     } catch (AccountException e) {
       System.out.println(e.getMessage());
       this.setAccountBalanceAfterTransaction(this.account.getCurrentBalance());
+      this.setAccountCreditAfterTransaction(this.account.getCurrentCredit());
       this.setCurrentStateFailed();
     }
 
