@@ -27,5 +27,19 @@ public class BankTransactionDiffblueTest {
     assertEquals("1234567890", (new BankTransaction(10L, date, new Account(1234567890L, new Client(""), 10L),
         new Account(1234567890L, new Client(""), 10L))).getTarget());
   }
+
+  @Test
+  public void testExecuteTransaction() throws TransactionException {
+    // Arrange
+    Date date = new Date(1L);
+    BankTransaction bankTransaction = new BankTransaction(10L, date, new Account(1234567890L, new Client(""), 10L),
+        new Account(1234567890L, new Client(""), 10L));
+
+    // Act
+    bankTransaction.executeTransaction();
+
+    // Assert
+    assertEquals(Transaction.TransactionState.EXECUTED, bankTransaction.getTransactionState());
+  }
 }
 
