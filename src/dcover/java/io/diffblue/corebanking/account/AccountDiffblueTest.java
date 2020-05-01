@@ -11,6 +11,13 @@ import org.junit.Test;
 
 public class AccountDiffblueTest {
 
+
+  @Test
+  public void testGetCurrentCredit() {
+    // Arrange, Act and Assert
+    assertEquals(10L, (new Account(1234567890L, new Client(""), 10L)).getCurrentCredit());
+  }
+
   @Test
   public void testAddToBalance() throws AccountException {
     // Arrange
@@ -20,7 +27,7 @@ public class AccountDiffblueTest {
     account.addToBalance(10L);
 
     // Assert
-    assertEquals(20L, account.getCurrentBalance());
+    assertEquals(0L, account.getCurrentBalance());
   }
 
   @Test
@@ -45,6 +52,18 @@ public class AccountDiffblueTest {
 
     // Assert
     assertEquals("Mr John Doe", account.getAccountName());
+  }
+
+  @Test
+  public void testSetOverdraftLimit() throws AccountException {
+    // Arrange
+    Account account = new Account(1234567890L, new Client(""), 10L);
+
+    // Act
+    account.setOverdraftLimit(0L);
+
+    // Assert
+    assertEquals(0L, account.getCurrentOverdraftLimit());
   }
 
   @Test
