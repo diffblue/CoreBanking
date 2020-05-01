@@ -9,6 +9,7 @@ public abstract class Transaction {
   private final Date transactionDate;
   protected TransactionState transactionState;
   private long accountBalanceAfterTransaction;
+  private long accountCreditAfterTransaction;
 
   /**
    * Transaction constructor.
@@ -75,6 +76,17 @@ public abstract class Transaction {
   }
 
   /**
+   * Sets the passed credit as the credit in the target account after the transaction.
+   *
+   * @param accountCreditAfterTransaction The credit to set.
+   * @throws TransactionException If the transaction was already executed.
+   */
+  protected void setAccountCreditAfterTransaction(long accountCreditAfterTransaction)
+          throws TransactionException {
+    this.accountCreditAfterTransaction = accountCreditAfterTransaction;
+  }
+
+  /**
    * Sets the transaction to a failed state.
    *
    * @throws TransactionException If the transaction was not in a not-executed state.
@@ -120,6 +132,9 @@ public abstract class Transaction {
             + "\t| "
             + "Balance: "
             + this.accountBalanceAfterTransaction
+            + "\t| "
+            + "Credit: "
+            + this.accountCreditAfterTransaction
             + "\t| "
             + "Transaction state: "
             + this.getTransactionState()
