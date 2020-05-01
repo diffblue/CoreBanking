@@ -8,9 +8,9 @@ SHA="$2"
 if [ "$BRANCH" != "dcover-dogfooding-noTrivial" ]
 then
 	if [[ $BRANCH != *"-Diffblue-tests"* ]]; then
-		lastUser=$(git log -1 --pretty=format:'%an')
+		lastUser=$(git log -1 --pretty=format:'%an' || echo "Diffblue Cover Bot")
 		echo "$lastUser"
-		if [ "$lastUser" == Diffblue Cover Bot ]; then
+		if [ "$lastUser" == "Diffblue Cover Bot" ]; then
 			mvn clean test
 		else
 			git checkout -b "$BRANCH""-Diffblue-tests"
@@ -23,7 +23,8 @@ then
 			NEW_SHA=$(git rev-parse HEAD)
 			echo "$SHA"
 			echo "$NEW_SHA"
-			.codebuild/github-post-pr.sh "$SHA" "Diffblue has found some code changes please check these are intended https://github.com/diffblue/CoreBanking/compare/$BRANCH...$BRANCH-Diffblue-tests?expand=1"
+			.codebuild/github-post-pr.sh "$SHA" "Diffblue has found some code changes please check these are intended [here](https://github.com/diffblue/CoreBanking/compare/$BRANCH...$BRANCH-Diffblue-tests?expand=1)"
+			false
 		fi
         fi
 fi
