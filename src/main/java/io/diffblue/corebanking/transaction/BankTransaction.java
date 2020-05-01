@@ -74,10 +74,12 @@ public class BankTransaction extends Transaction {
       this.sourceAcc.takeFromBalance(this.getTransactionAmount());
       this.targetAcc.addToBalance(this.getTransactionAmount());
       this.setAccountBalanceAfterTransaction(this.targetAcc.getCurrentBalance());
+      this.setAccountCreditAfterTransaction(this.targetAcc.getCurrentCredit());
       this.markTransactionAsExecuted();
     } catch (AccountException e) {
       e.printStackTrace();
       this.setAccountBalanceAfterTransaction(this.targetAcc.getCurrentBalance());
+      this.setAccountCreditAfterTransaction(this.targetAcc.getCurrentCredit());
       this.setCurrentStateFailed();
       throw new TransactionException(e.getMessage());
     }
@@ -86,6 +88,7 @@ public class BankTransaction extends Transaction {
     try {
       BankTransaction cloneForSource = this.cloneBankTransaction();
       cloneForSource.setAccountBalanceAfterTransaction(sourceAcc.getCurrentBalance());
+      cloneForSource.setAccountCreditAfterTransaction(sourceAcc.getCurrentCredit());
       this.sourceAcc.addTransaction(cloneForSource);
       this.targetAcc.addTransaction(this);
     } catch (AccountException e) {
