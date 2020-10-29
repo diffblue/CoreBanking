@@ -37,6 +37,9 @@ public class AccountsMenu extends Menu {
       case 2:
         createNewAccount();
         break;
+      case 3:
+        removeExistingAccount();
+        break;
       case 0:
         System.out.println();
         break;
@@ -71,7 +74,37 @@ public class AccountsMenu extends Menu {
   }
 
   /**
-   * Take client name as a string and returns the client object for that client
+   * Takes the input required to delete a new account, and deletes it from core banking instance.
+   */
+  private void removeExistingAccount() {
+    System.out.println("Enter account number: ");
+    BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+    try {
+      long accountNumber = Long.parseLong(reader.readLine());
+      coreBanking.closeAccount(getAccountFromNumber(accountNumber));
+    } catch (IOException e) {
+      System.out.println("Account number invalid.");
+    } catch (NullPointerException e) {
+      System.out.println("Account number does not exist");
+    }
+  }
+
+  /**
+   * Returns an account for a given account number.
+   *
+   * @param accountNumber The account number for the account you wish to close.
+   */
+  private Account getAccountFromNumber(long accountNumber){
+    for (Account account: coreBanking.getAccounts()) {
+      if (account.getAccountNumber() == accountNumber) {
+        return account;
+      }
+    }
+    return null;
+  }
+
+  /**
+   * Take client name as a string and returns the client object for that client.
    */
   private Client getClientFromName(String clientName){
     for (Client client: coreBanking.getClients()) {

@@ -62,6 +62,16 @@ public class CoreBanking {
   }
 
   /**
+   * Closes and account
+   *
+   * @param account The client to be closed.
+   * @return The result of removing the account.
+   */
+  public boolean closeAccount(Account account) {
+    return this.accounts.remove(account);
+  }
+
+  /**
    * Adds the passed client to the clients in the core banking app.
    *
    * @param client The client to add to the core banking.
