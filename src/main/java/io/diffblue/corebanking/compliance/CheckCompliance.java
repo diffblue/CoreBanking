@@ -4,6 +4,7 @@ import io.diffblue.corebanking.account.Account;
 import io.diffblue.corebanking.compliance.rules.ComplianceRule;
 import io.diffblue.corebanking.compliance.rules.ComplianceRuleBalanceAboveOrEqualToZero;
 
+import io.diffblue.corebanking.compliance.rules.ComplianceRuleLargeCashDeposits;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,6 +14,7 @@ public class CheckCompliance {
 
   static {
     COMPLIANCE_RULES.add(new ComplianceRuleBalanceAboveOrEqualToZero());
+    COMPLIANCE_RULES.add(new ComplianceRuleLargeCashDeposits());
   }
 
   /**
