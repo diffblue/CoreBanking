@@ -7,6 +7,7 @@ import io.diffblue.corebanking.compliance.rules.ComplianceRuleBalanceAboveOrEqua
 import io.diffblue.corebanking.compliance.rules.ComplianceRuleLargeCashDeposits;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class CheckCompliance {
 
@@ -39,7 +40,17 @@ public class CheckCompliance {
    * Outputs the result of the compliance check, printing the compliant accounts followed by failed
    * accounts.
    */
-  public static void viewComplianceCheckResults() {}
+  public static void viewComplianceCheckResults() {
+    for (ComplianceRule rule : COMPLIANCE_RULES) {
+      System.out.println(rule.getClass().getSimpleName());
+      System.out.println("  verified: " +
+          rule.getCompliantAccounts().stream().map(account -> Long.toString(account.getAccountNumber()))
+              .collect(Collectors.toList()));
+      System.out.println("  failed: " +
+          rule.getNonCompliantAccounts().stream().map(account -> Long.toString(account.getAccountNumber()))
+              .collect(Collectors.toList()));
+    }
+  }
 
   /** Purges the previously stored compliance check results (passed/failed accounts). */
   public static void purgeComplianceResults() {
