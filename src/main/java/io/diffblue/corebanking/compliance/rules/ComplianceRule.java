@@ -58,6 +58,20 @@ public abstract class ComplianceRule {
   }
 
   /**
+   * @return True if there are compliant accounts
+   */
+  public boolean hasCompliantAccounts() {
+    return !this.getCompliantAccounts().isEmpty();
+  }
+
+  /**
+   * @return True if there are non-compliant accounts
+   */
+  public boolean hasNonCompliantAccounts() {
+    return !this.getNonCompliantAccounts().isEmpty();
+  }
+
+  /**
    * Checks if the passed account passes or fails this rule.
    *
    * @param account The account to verify compliance.
