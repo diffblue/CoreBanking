@@ -12,6 +12,7 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -35,7 +36,7 @@ public class BatchProcessor {
 
   private static final DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
-  private void processLine(String line) {
+  public int processLine(String line) {
     String[] command = line.split("\\|");
     if (command.length == 0) {
       throw new IllegalArgumentException("Command expected");
@@ -94,6 +95,16 @@ public class BatchProcessor {
       default:
         throw new IllegalArgumentException("Unexpected command: " + command[0]);
     }
+
+    return 0;
+  }
+
+  public Map<String, Client> getClients() {
+    return Collections.unmodifiableMap(clients);
+  }
+
+  public Map<Long, Account> getAccounts() {
+    return Collections.unmodifiableMap(accounts);
   }
 
   private void check() {
