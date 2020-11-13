@@ -12,6 +12,8 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -35,7 +37,7 @@ public class BatchProcessor {
 
   private static final DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
-  private void processLine(String line) {
+  public int processLine(String line) {
     String[] command = line.split("\\|");
     if (command.length == 0) {
       throw new IllegalArgumentException("Command expected");
@@ -64,9 +66,10 @@ public class BatchProcessor {
               "CASH expects three arguments (amount, date, account number)");
         }
         try {
+          Date parsedDate = dateFormat.parse(command[2]);
           new CashTransaction(
               Long.parseLong(command[1]),
-              dateFormat.parse(command[2]),
+              new Date(parsedDate.getYear() + 1900, parsedDate.getMonth() + 1, parsedDate.getDay() + 1),
               accounts.get(Long.parseLong(command[3])))
               .executeTransaction();
         } catch (Exception e) {
@@ -80,9 +83,10 @@ public class BatchProcessor {
               "BANK expects four arguments (amount, date, source and target account number)");
         }
         try {
+          Date parsedDate = dateFormat.parse(command[2]);
           new BankTransaction(
               Long.parseLong(command[1]),
-              dateFormat.parse(command[2]),
+              new Date(parsedDate.getYear() + 1900, parsedDate.getMonth() + 1, parsedDate.getDay() + 1),
               accounts.get(Long.parseLong(command[3])),
               accounts.get(Long.parseLong(command[4])))
               .executeTransaction();
@@ -94,6 +98,16 @@ public class BatchProcessor {
       default:
         throw new IllegalArgumentException("Unexpected command: " + command[0]);
     }
+
+    return 0;
+  }
+
+  public Map<String, Client> getClients() {
+    return Collections.unmodifiableMap(clients);
+  }
+
+  public Map<Long, Account> getAccounts() {
+    return Collections.unmodifiableMap(accounts);
   }
 
   private void check() {
