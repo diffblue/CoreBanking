@@ -7,10 +7,8 @@ import io.diffblue.corebanking.transaction.BankTransaction;
 import io.diffblue.corebanking.transaction.CashTransaction;
 import java.io.BufferedReader;
 import java.io.FileReader;
-import java.io.IOException;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
@@ -35,7 +33,7 @@ public class BatchProcessor {
   private Map<String, Client> clients = new HashMap<>();
   private Map<Long, Account> accounts = new HashMap<>();
 
-  private static final DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+  private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
   public int processLine(String line) {
     String[] command = line.split("\\|");
@@ -66,10 +64,10 @@ public class BatchProcessor {
               "CASH expects three arguments (amount, date, account number)");
         }
         try {
-          Date parsedDate = dateFormat.parse(command[2]);
+          LocalDate parsedDate = LocalDate.parse(command[2], formatter);
           new CashTransaction(
               Long.parseLong(command[1]),
-              new Date(parsedDate.getYear() + 1900, parsedDate.getMonth() + 1, parsedDate.getDay() + 1),
+              new Date(parsedDate.getYear(), parsedDate.getMonthValue(), parsedDate.getDayOfMonth()),
               accounts.get(Long.parseLong(command[3])))
               .executeTransaction();
         } catch (Exception e) {
@@ -83,10 +81,10 @@ public class BatchProcessor {
               "BANK expects four arguments (amount, date, source and target account number)");
         }
         try {
-          Date parsedDate = dateFormat.parse(command[2]);
+          LocalDate parsedDate = LocalDate.parse(command[2], formatter);
           new BankTransaction(
               Long.parseLong(command[1]),
-              new Date(parsedDate.getYear() + 1900, parsedDate.getMonth() + 1, parsedDate.getDay() + 1),
+              new Date(parsedDate.getYear(), parsedDate.getMonthValue(), parsedDate.getDayOfMonth()),
               accounts.get(Long.parseLong(command[3])),
               accounts.get(Long.parseLong(command[4])))
               .executeTransaction();
