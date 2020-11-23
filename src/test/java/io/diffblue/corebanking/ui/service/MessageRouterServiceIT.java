@@ -25,7 +25,7 @@ public class MessageRouterServiceIT {
   private static final String APACHE_PULSAR_BINARY = "bin/pulsar";
 
   private static Process brokerProcess;
-  private static MessageRouter messageRouter;
+  private static Process serviceProcess;
 
   @BeforeClass
   public static void downloadAndStart() throws Exception {
@@ -57,15 +57,21 @@ public class MessageRouterServiceIT {
     System.out.println("Broker started.");
 
     System.out.println("Starting service...");
-    messageRouter = new MessageRouter(MessageRouterService.MESSAGE_BROKER_URL);
-    messageRouter.start();
+    ProcessBuilder serviceProcessBuilder =
+        new ProcessBuilder("java",
+            "-cp", "CoreBanking-1.0.0-jar-with-dependencies.jar",
+            "io.diffblue.corebanking.ui.service.MessageRouterService")
+            .directory(new File("target"))
+            .inheritIO();
+    serviceProcess = serviceProcessBuilder.start();
     System.out.println("Service started.");
   }
 
   @AfterClass
   public static void shutdown() throws Exception {
     System.out.println("Stopping service...");
-    messageRouter.close();
+    serviceProcess.destroy();
+    assertEquals(143, serviceProcess.waitFor());
     System.out.println("Service stopped.");
 
     System.out.println("Stopping broker...");
