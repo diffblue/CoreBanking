@@ -8,7 +8,10 @@ import static org.junit.Assert.assertTrue;
 import io.diffblue.corebanking.communication.MessageRouter;
 import java.io.File;
 import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
+import java.util.stream.Collectors;
 import org.apache.pulsar.client.api.Consumer;
 import org.apache.pulsar.client.api.Message;
 import org.apache.pulsar.client.api.Producer;
@@ -57,10 +60,17 @@ public class MessageRouterServiceIT {
     System.out.println("Broker started.");
 
     System.out.println("Starting service...");
+    List<String> command = new ArrayList<>();
+    command.add("java");
+    command.add("-cp");
+    command.add("CoreBanking-1.0.0-jar-with-dependencies.jar");
+    if (System.getProperty("cover.agent") != null) {
+      command.add("-javaagent:" + System.getProperty("cover.agent"));
+    }
+    command.add("io.diffblue.corebanking.ui.service.MessageRouterService");
+    System.out.println("Running command: " + command.stream().collect(Collectors.joining(" ")));
     ProcessBuilder serviceProcessBuilder =
-        new ProcessBuilder("java",
-            "-cp", "CoreBanking-1.0.0-jar-with-dependencies.jar",
-            "io.diffblue.corebanking.ui.service.MessageRouterService")
+        new ProcessBuilder(command.toArray(new String[0]))
             .directory(new File("target"))
             .inheritIO();
     serviceProcess = serviceProcessBuilder.start();
