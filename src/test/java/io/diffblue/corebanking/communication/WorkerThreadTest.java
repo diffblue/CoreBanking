@@ -47,7 +47,9 @@ public class WorkerThreadTest {
     outChannels.put(MessageRouter.OUT_BATCH, outBatch);
     outChannels.put(MessageRouter.OUT_MANUAL, outManual);
 
-    WorkerThread workerThread = new WorkerThread(inChannel, outChannels);
+    MessageProcessor messageProcessor = new MessageProcessor();
+
+    WorkerThread workerThread = new WorkerThread(inChannel, outChannels, messageProcessor);
     workerThread.run();
 
     verify(messageBuilder).send();

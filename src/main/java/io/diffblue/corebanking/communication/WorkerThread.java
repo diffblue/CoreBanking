@@ -10,10 +10,15 @@ public class WorkerThread implements Runnable {
 
   private Consumer inChannel;
   private HashMap<String, Producer<byte[]>> outChannels;
+  private MessageProcessor messageProcessor;
 
-  WorkerThread(Consumer inChannel, HashMap<String, Producer<byte[]>> outChannels) {
+  WorkerThread(
+      Consumer inChannel,
+      HashMap<String, Producer<byte[]>> outChannels,
+      MessageProcessor messageProcessor) {
     this.inChannel = inChannel;
     this.outChannels = outChannels;
+    this.messageProcessor = messageProcessor;
   }
 
   @Override
@@ -39,21 +44,8 @@ public class WorkerThread implements Runnable {
   }
 
   private void processMessage(Message message) throws PulsarClientException {
-    String outChannel = computeOutChannel(message);
+    String outChannel = messageProcessor.computeOutChannel(message);
     forwardMessage(outChannel, message);
-  }
-
-  private String computeOutChannel(Message message) {
-    if (message.getKey().equals(MessageRouter.KEY_TRANSACTION)) {
-      if (message.hasProperty(MessageRouter.PROPERTY_URGENT) &&
-          message.getProperty(MessageRouter.PROPERTY_URGENT).equals(Boolean.TRUE.toString())) {
-        return MessageRouter.OUT_URGENT;
-      } else {
-        return MessageRouter.OUT_BATCH;
-      }
-    } else {
-      return MessageRouter.OUT_MANUAL;
-    }
   }
 
   private void forwardMessage(String outChannel, Message message) throws PulsarClientException {

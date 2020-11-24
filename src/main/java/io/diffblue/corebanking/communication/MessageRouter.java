@@ -21,6 +21,7 @@ public class MessageRouter implements Closeable {
   private PulsarClient client;
   private Consumer inChannel;
   private final HashMap<String, Producer<byte[]>> outChannels = new HashMap<>();
+  private MessageProcessor messageProcessor;
   private Thread workerThread;
 
   public MessageRouter(String messageBrokerUrl) throws PulsarClientException {
@@ -56,10 +57,12 @@ public class MessageRouter implements Closeable {
             .sendTimeout(10, TimeUnit.SECONDS)
             .blockIfQueueFull(true)
             .create());
+
+    this.messageProcessor = new MessageProcessor();
   }
 
   public void start() {
-    this.workerThread = new Thread(new WorkerThread(inChannel, outChannels));
+    this.workerThread = new Thread(new WorkerThread(inChannel, outChannels, messageProcessor));
     this.workerThread.start();
   }
 
