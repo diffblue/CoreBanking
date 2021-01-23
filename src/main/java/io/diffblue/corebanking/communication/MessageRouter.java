@@ -7,6 +7,7 @@ import org.apache.pulsar.client.api.Consumer;
 import org.apache.pulsar.client.api.Producer;
 import org.apache.pulsar.client.api.PulsarClient;
 import org.apache.pulsar.client.api.PulsarClientException;
+import org.apache.pulsar.client.api.SubscriptionInitialPosition;
 
 public class MessageRouter implements Closeable {
   public static final String IN_ALL = "all-incoming";
@@ -29,30 +30,38 @@ public class MessageRouter implements Closeable {
         .serviceUrl(messageBrokerUrl)
         .build();
 
+    System.out.printf("MessageRouter: subscribing to topic '%s'...%n", IN_ALL);
     this.inChannel = client.newConsumer()
         .topic(IN_ALL)
-        .subscriptionName(IN_ALL)
+        .subscriptionName("message-router-consumer")
+        .subscriptionInitialPosition(SubscriptionInitialPosition.Earliest)
         .subscribe();
 
+    System.out.printf("MessageRouter: opening producer on topic '%s'...%n", OUT_URGENT);
     this.outChannels.put(OUT_URGENT,
         client.newProducer()
             .topic(OUT_URGENT)
+            .producerName("message-router-urgent-producer")
             .batchingMaxPublishDelay(10, TimeUnit.MILLISECONDS)
             .sendTimeout(10, TimeUnit.SECONDS)
             .blockIfQueueFull(true)
             .create());
 
+    System.out.printf("MessageRouter: opening producer on topic '%s'...%n", OUT_BATCH);
     this.outChannels.put(OUT_BATCH,
         client.newProducer()
             .topic(OUT_BATCH)
+            .producerName("message-router-batch-producer")
             .batchingMaxPublishDelay(10, TimeUnit.MILLISECONDS)
             .sendTimeout(10, TimeUnit.SECONDS)
             .blockIfQueueFull(true)
             .create());
 
+    System.out.printf("MessageRouter: opening producer on topic '%s'...%n", OUT_MANUAL);
     this.outChannels.put(OUT_MANUAL,
         client.newProducer()
             .topic(OUT_MANUAL)
+            .producerName("message-router-manual-producer")
             .batchingMaxPublishDelay(10, TimeUnit.MILLISECONDS)
             .sendTimeout(10, TimeUnit.SECONDS)
             .blockIfQueueFull(true)
@@ -62,7 +71,7 @@ public class MessageRouter implements Closeable {
   }
 
   public void start() {
-    this.workerThread = new Thread(new WorkerThread(inChannel, outChannels, messageProcessor));
+    this.workerThread = new WorkerThread(inChannel, outChannels, messageProcessor);
     this.workerThread.start();
   }
 

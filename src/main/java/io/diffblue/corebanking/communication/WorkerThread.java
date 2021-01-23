@@ -3,10 +3,11 @@ package io.diffblue.corebanking.communication;
 import java.util.HashMap;
 import org.apache.pulsar.client.api.Consumer;
 import org.apache.pulsar.client.api.Message;
+import org.apache.pulsar.client.api.MessageId;
 import org.apache.pulsar.client.api.Producer;
 import org.apache.pulsar.client.api.PulsarClientException;
 
-public class WorkerThread implements Runnable {
+public class WorkerThread extends Thread {
 
   private Consumer inChannel;
   private HashMap<String, Producer<byte[]>> outChannels;
@@ -24,22 +25,29 @@ public class WorkerThread implements Runnable {
   @Override
   public void run() {
     try {
+
       while (true) {
+        System.out.printf("WorkerThread: topic '%s': receiving...%n", inChannel.getTopic());
         Message message = inChannel.receive();
+        System.out.printf("WorkerThread: topic '%s': received '%s'%n", inChannel.getTopic(),
+            message.getMessageId());
 
         try {
           processMessage(message);
           inChannel.acknowledge(message);
+          System.out.println("WorkerThread: message acknowledged");
         } catch (PulsarClientException e) {
           inChannel.negativeAcknowledge(message);
+          System.out.println("WorkerThread: message negatively acknowledged");
         }
       }
-    } catch (PulsarClientException e) {
+    } catch (Exception e) {
       if (e.getCause() instanceof InterruptedException) {
+        System.out.println("WorkerThread: interrupted, terminating now");
         return;
       }
-    } catch (Exception e) {
-      System.err.printf("Failed: " + e.toString());
+      System.out.printf("WorkerThread: error: %s%n", e.getMessage());
+      e.printStackTrace();
     }
   }
 
@@ -49,10 +57,13 @@ public class WorkerThread implements Runnable {
   }
 
   private void forwardMessage(String outChannel, Message message) throws PulsarClientException {
-    outChannels.get(outChannel).newMessage()
+    System.out.printf("WorkerThread: forwarding message '%s' to topic '%s'...%n",
+        message.getMessageId(), outChannel);
+    MessageId id = outChannels.get(outChannel).newMessage()
         .key(message.getKey())
         .value(message.getData())
         .properties(message.getProperties())
         .send();
+    System.out.printf("WorkerThread: sent, id: '%s'%n", id);
   }
 }

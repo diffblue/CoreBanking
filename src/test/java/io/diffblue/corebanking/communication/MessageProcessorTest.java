@@ -13,6 +13,7 @@ public class MessageProcessorTest {
 
   @Test
   public void testUrgent() {
+    // arrange
     MessageProcessor messageProcessor = new MessageProcessor();
     Message message = mock(Message.class);
     when(message.getKey()).thenReturn(MessageRouter.KEY_TRANSACTION);
@@ -24,6 +25,7 @@ public class MessageProcessorTest {
     byte[] payload = "some message".getBytes();
     when(message.getData()).thenReturn(payload);
 
+    // act and assert
     assertEquals(MessageRouter.OUT_URGENT, messageProcessor.computeOutChannel(message));
   }
 
