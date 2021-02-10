@@ -18,6 +18,7 @@ import org.apache.pulsar.client.api.MessageId;
 import org.apache.pulsar.client.api.Producer;
 import org.apache.pulsar.client.api.PulsarClient;
 import org.apache.pulsar.client.api.SubscriptionInitialPosition;
+import org.junit.Ignore;
 import org.junit.Test;
 
 public class MessageRouterServiceIT {
@@ -68,6 +69,7 @@ public class MessageRouterServiceIT {
     }
   }
 
+  @Ignore
   @Test
   public void testBatch() throws Exception {
     try (PulsarClient client = PulsarClient.builder()
@@ -113,6 +115,7 @@ public class MessageRouterServiceIT {
     }
   }
 
+  @Ignore
   @Test
   public void testManual() throws Exception {
     try (PulsarClient client = PulsarClient.builder()

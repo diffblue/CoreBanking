@@ -8,8 +8,8 @@ if ! test -d apache-pulsar-$V; then
    tar xzf pulsar.tar.gz
 fi
 
-# clean state of the server (optional)
+# clean state of the server
 rm -Rf apache-pulsar-$V/data/
 
 # run the broker
-./apache-pulsar-$V/bin/pulsar standalone
+exec ./apache-pulsar-$V/bin/pulsar standalone

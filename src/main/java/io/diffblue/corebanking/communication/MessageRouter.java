@@ -26,6 +26,7 @@ public class MessageRouter implements Closeable {
   private Thread workerThread;
 
   public MessageRouter(String messageBrokerUrl) throws PulsarClientException {
+    System.out.printf("MessageRouter: constructing the PulsarClient...%n");
     this.client = PulsarClient.builder()
         .serviceUrl(messageBrokerUrl)
         .build();
