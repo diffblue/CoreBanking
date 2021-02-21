@@ -69,7 +69,6 @@ public class MessageRouterServiceIT {
     }
   }
 
-  @Ignore
   @Test
   public void testBatch() throws Exception {
     try (PulsarClient client = PulsarClient.builder()
@@ -115,7 +114,6 @@ public class MessageRouterServiceIT {
     }
   }
 
-  @Ignore
   @Test
   public void testManual() throws Exception {
     try (PulsarClient client = PulsarClient.builder()
