@@ -1,10 +1,15 @@
+0. Put a version of Cover (>= 2021.02.01) into a `diffblue-cover`
+   subdirectory of the root folder of the project so that Cover can be
+   run as `diffblue-cover/dcover`.
+
 
 1. Open three terminals and make the current working directory on all of them to
    be the root folder of the project. Compile the project, using one of the
-   terminals:
+   terminals (this will remove any lingering Diffblue tests,
+   traces and log files, and then run `mvn clean package -DskipTests`):
 
    ```sh
-   $ mvn package -DskipTests
+   $ ./clean.sh
    ```
 
 2. On the first terminal, run the Apache Pulsar broker (the script will download
@@ -42,7 +47,7 @@
 4. On the third terminal, run some unit tests which interact with the message
    router (via the broker), thereby exercising the code of the message router:
    ```sh
-   $ mvn failsafe:integration-test -Dit.test=MessageRouterServiceIT
+   $ mvn verify -Dtest=none -DfailIfNoTests=false -Dit.test=MessageRouterServiceIT
    [INFO] Scanning for projects...
    ...
    [INFO] Running io.diffblue.corebanking.ui.service.MessageRouterServiceIT
@@ -69,8 +74,14 @@
    ^CWorkerThread: interrupted, terminating now
    ```
 
-6. Extract tests using the execution trace of the message router:
+6. Extract tests using the execution trace of the message router,
+   mocking the classes of the Apache Pulsar API that would otherwise
+   communicate with the broker:
 
    ```sh
-   dcover create --trace --fuzzing-iterations=0 io.diffblue.corebanking.communication --mock org.apache.pulsar
+diffblue-cover/dcover create --fuzzing-iterations 0 --trace io.diffblue.corebanking.communication \
+      --mock org.apache.pulsar.client.api.Message \
+      --mock org.apache.pulsar.client.api.Consumer \
+      --mock org.apache.pulsar.client.api.Producer \
+      --mock org.apache.pulsar.client.api.TypedMessageBuilder
    ```
