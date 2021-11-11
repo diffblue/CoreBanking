@@ -27,6 +27,7 @@ public class ComplianceRuleLargeCashDeposits extends ComplianceRule {
    *
    * @param account The account to verify compliance.
    */
+  @Override
   public void validateAccountCompliance(Account account) {
 
     // Make sure the account does not belong to any list.

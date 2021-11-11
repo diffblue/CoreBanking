@@ -17,17 +17,17 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class BatchProcessor {
-  public static void main(String[] args) {
-    if (args.length != 1) {
-      return;
-    }
+  public static void main(String... args) {
 
-    try(BufferedReader reader = new BufferedReader(new FileReader(args[0]))) {
-      BatchProcessor batchProcessor = new BatchProcessor();
-      reader.lines().forEach(batchProcessor::processLine);
-      batchProcessor.check();
-    } catch (Exception e) {
-      System.err.println(e.getMessage());
+    for (String file : args) {
+      System.out.printf("Processing '%s'%n", file);
+      try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
+        BatchProcessor batchProcessor = new BatchProcessor();
+        reader.lines().forEach(batchProcessor::processLine);
+        batchProcessor.check();
+      } catch (Exception e) {
+        System.err.println(e.getMessage());
+      }
     }
   }
 
