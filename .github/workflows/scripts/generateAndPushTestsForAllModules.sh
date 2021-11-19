@@ -11,7 +11,7 @@ PATCH_FILE=$4
 # jacoco.exec
 COVERAGE_REPORT=$5
 
-for MODULE in "module1" "module2"
+for MODULE in "."
 do
   echo "Generating tests for $MODULE on branch $BRANCH with test location $TEST_LOCATION, patch file $PATCH_FILE and coverage report $COVERAGE_REPORT"
 	./.github/workflows/scripts/generateTests.sh $SCRIPT_LOCATION $TEST_LOCATION $MODULE $PATCH_FILE $COVERAGE_REPORT $BRANCH

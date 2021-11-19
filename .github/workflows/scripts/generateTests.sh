@@ -14,8 +14,8 @@ COVERAGE_REPORT=$5
 BRANCH=$6
 
 echo "Git set up"
-git config --global user.email "magic@diffblue.com"
-git config --global user.name "Magic"
+git config --global user.email "db-ci-platform@diffblue.com"
+git config --global user.name "db-ci-platform"
 git fetch origin "$BRANCH" -q
 git checkout -b "$BRANCH" origin/$BRANCH
 echo "We've fetched checked out and origin/$BRANCH as $BRANCH"
