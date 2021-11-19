@@ -51,4 +51,13 @@
       </plugin>
     </plugins>
   </build>
+  <profiles>
+    <profile>
+      <id>DiffblueTests</id>
+      <properties>
+        <test.source.dir>src/diffbluetest/java</test.source.dir>
+        <test.build.dir>target/diffblue-test-classes</test.build.dir>
+      </properties>
+    </profile>
+  </profiles>
 </project>
