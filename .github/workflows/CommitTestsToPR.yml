@@ -1,0 +1,115 @@
+name: Diffblue test update
+
+on:
+  pull_request:
+    types: [synchronize, reopened, opened]
+
+env:
+  TEST_LOCATION: src/diffbluetest/java
+  DCOVER_SCRIPT: dcover/dcover
+  PATCH_FILE: ""
+  COVERAGE_REPORT: target/jacoco.exec
+
+jobs:
+  run-existing-diffblue-tests:
+    if: github.actor != 'db-ci-platform'
+    runs-on: ubuntu-latest
+    env:
+      RESULT: 0
+      COMMENT: ""
+    steps:
+
+      - name: Checkout this branch
+        uses: actions/checkout@v2
+        with:
+          token: ${{ secrets.DB_CI_USER_TOKEN }}
+
+      - name: Add comment about running existing tests
+        uses: phulsechinmay/rewritable-pr-comment@v0.3.0
+        with:
+          message: ":bug: Existing Diffblue tests are running to check for regressions."
+          GITHUB_TOKEN: ${{ secrets.DB_CI_USER_TOKEN }}
+          COMMENT_IDENTIFIER: "existing-job-comment"
+
+      - name: Run existing Diffblue Tests
+        run: |
+          set +e
+          mvn test -P DiffblueTests --fail-at-end
+          RESULT=$?
+          echo "Exit code is $RESULT"
+          set -e
+          if [ $RESULT != 0 ]
+          then
+            COMMENT=":x: Existing Diffblue tests failed which may indicate a regression. See the CI run on commit ${{ github.event.pull_request.head.sha }} to check for any unexpected failures. Diffblue will update the tests automatically."
+          else
+            COMMENT=":heavy_check_mark: Existing Diffblue tests passed."
+          fi
+          echo "COMMENT=$COMMENT" >> $GITHUB_ENV
+          echo "RESULT=$RESULT" >> $GITHUB_ENV
+
+      - name: Add comment about test results
+        uses: phulsechinmay/rewritable-pr-comment@v0.3.0
+        with:
+          message: ${{ env.COMMENT }}
+          GITHUB_TOKEN: ${{ secrets.DB_CI_USER_TOKEN }}
+          COMMENT_IDENTIFIER: "existing-job-comment"
+
+      - name: Exit
+        run: |
+          exit ${{env.RESULT}}
+
+  # Generate tests
+  new-diffblue-tests:
+    if: github.actor != 'db-ci-platform'
+    runs-on: ubuntu-latest
+
+    steps:
+      # Cancel any previous runs
+      - name: Cancel Previous Runs
+        continue-on-error: true
+        uses: styfle/cancel-workflow-action@0.6.0
+        with:
+          access_token: ${{ secrets.DB_CI_USER_TOKEN }}
+
+      # Checkout main branch for Diffblue to analyze
+      - name: Checkout this branch
+        uses: actions/checkout@v2
+        with:
+          token: ${{ secrets.DB_CI_USER_TOKEN }}
+
+      - name: Update comment with progress
+        uses: phulsechinmay/rewritable-pr-comment@v0.3.0
+        with:
+          message: ":coffee: Diffblue is updating tests and will push commits to your PR shortly."
+          GITHUB_TOKEN: ${{ secrets.DB_CI_USER_TOKEN }}
+          COMMENT_IDENTIFIER: "test-output-comment-rewritable-action"
+
+      # Get DCover
+      - name: Get dcover
+        run: |
+          ./.github/workflows/scripts/getDCover.sh ${{ secrets.RELEASE_URL }}
+
+      # Generate patch for whole project
+      -  name: Generate patch file
+         run: |
+           git branch
+           git fetch origin ${{github.base_ref}} -q
+           git fetch origin ${{github.head_ref}} -q
+           echo "Running: git diff origin/${{github.base_ref}} origin/${{github.head_ref}} > DiffblueTests.patch"
+           git diff origin/${{github.base_ref}} origin/${{github.head_ref}} > DiffblueTests.patch
+           PATCH_FILE=$(realpath DiffblueTests.patch)
+           echo "Patch file at $PATCH_FILE contains: $(cat DiffblueTests.patch)"
+           echo "PATCH_FILE=$PATCH_FILE" >> $GITHUB_ENV
+
+      # Analyse codebase, and push tests to new branch
+      - name: Commit tests to PR
+        run: |
+          ./.github/workflows/scripts/cleanBuild.sh
+          ./.github/workflows/scripts/generateAndPushTestsForAllModules.sh ${{env.DCOVER_SCRIPT}} ${{env.TEST_LOCATION}} ${{github.head_ref}} ${{env.PATCH_FILE}} ${{env.COVERAGE_REPORT}}
+
+      - name: Update comment with test results
+        uses: phulsechinmay/rewritable-pr-comment@v0.3.0
+        with:
+          message: ":heavy_check_mark: Diffblue has pushed updated tests to your PR."
+          GITHUB_TOKEN: ${{ secrets.DB_CI_USER_TOKEN }}
+          COMMENT_IDENTIFIER: "test-output-comment-rewritable-action"
