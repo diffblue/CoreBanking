@@ -53,7 +53,7 @@ public class CoreBankingDiffblueTest {
   public void testOpenNewAccount() throws TransactionException {
     // Arrange
     CoreBanking readFromDBResult = ReadFromDB.readFromDB();
-    Client client = new Client("Dr Jane Doe");
+    Client client = new Client("Peter");
 
     // Act
     Account actualOpenNewAccountResult = readFromDBResult.openNewAccount(client, 10L);
@@ -70,36 +70,13 @@ public class CoreBankingDiffblueTest {
   }
 
   /**
-   * Method under test: {@link CoreBanking#openNewAccount(Client, long)}
-   */
-  @Test
-  public void testOpenNewAccount2() throws TransactionException {
-    // Arrange
-    CoreBanking readFromDBResult = ReadFromDB.readFromDB();
-    Client client = new Client("Dr Jane Doe");
-
-    // Act
-    Account actualOpenNewAccountResult = readFromDBResult.openNewAccount(client, 3653L);
-
-    // Assert
-    assertEquals("Current", actualOpenNewAccountResult.getAccountName());
-    assertEquals(3653L, actualOpenNewAccountResult.getCurrentBalance());
-    Client client1 = actualOpenNewAccountResult.getClient();
-    assertSame(client, client1);
-    assertEquals(Account.AccountState.OPEN, actualOpenNewAccountResult.getAccountState());
-    assertEquals(1, client1.getAccounts().size());
-    assertTrue(actualOpenNewAccountResult.getAccountStatement().getTransactions().isEmpty());
-    assertEquals(7, readFromDBResult.getAccounts().size());
-  }
-
-  /**
    * Method under test: {@link CoreBanking#registerNewClient(Client)}
    */
   @Test
   public void testRegisterNewClient() throws TransactionException {
     // Arrange
     CoreBanking readFromDBResult = ReadFromDB.readFromDB();
-    Client client = new Client("Dr Jane Doe");
+    Client client = new Client("Peter");
 
     // Act and Assert
     assertSame(client, readFromDBResult.registerNewClient(client));

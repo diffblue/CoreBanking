@@ -22,14 +22,14 @@ public class CashTransactionDiffblueTest {
 
     // Act
     CashTransaction actualCashTransaction = new CashTransaction(10L, fromResult,
-        new Account(1234567890L, new Client("Dr Jane Doe"), 10L));
+        new Account(987654321L, new Client("Peter"), 10L));
 
     // Assert
     assertEquals("CASH", actualCashTransaction.getSource());
     assertEquals(Transaction.TransactionState.NOT_EXECUTED_YET, actualCashTransaction.getTransactionState());
     assertSame(fromResult, actualCashTransaction.getTransactionDate());
     assertEquals(10L, actualCashTransaction.getTransactionAmount());
-    assertEquals("1234567890", actualCashTransaction.getTarget());
+    assertEquals("987654321", actualCashTransaction.getTarget());
   }
 
   /**
@@ -43,10 +43,10 @@ public class CashTransactionDiffblueTest {
 
     // Act
     CashTransaction actualCashTransaction = new CashTransaction(-1L, fromResult,
-        new Account(1234567890L, new Client("Dr Jane Doe"), 10L));
+        new Account(987654321L, new Client("Peter"), 10L));
 
     // Assert
-    assertEquals("1234567890", actualCashTransaction.getSource());
+    assertEquals("987654321", actualCashTransaction.getSource());
     assertEquals(Transaction.TransactionState.NOT_EXECUTED_YET, actualCashTransaction.getTransactionState());
     assertSame(fromResult, actualCashTransaction.getTransactionDate());
     assertEquals(-1L, actualCashTransaction.getTransactionAmount());
@@ -64,7 +64,7 @@ public class CashTransactionDiffblueTest {
 
     // Act and Assert
     assertEquals("CASH",
-        (new CashTransaction(10L, date, new Account(1234567890L, new Client("Dr Jane Doe"), 10L))).getSource());
+        (new CashTransaction(10L, date, new Account(987654321L, new Client("Peter"), 10L))).getSource());
   }
 
   /**
@@ -77,8 +77,8 @@ public class CashTransactionDiffblueTest {
     Date date = Date.from(atStartOfDayResult.atZone(ZoneId.of("UTC")).toInstant());
 
     // Act and Assert
-    assertEquals("1234567890",
-        (new CashTransaction(-1L, date, new Account(1234567890L, new Client("Dr Jane Doe"), 10L))).getSource());
+    assertEquals("987654321",
+        (new CashTransaction(-1L, date, new Account(987654321L, new Client("Peter"), 10L))).getSource());
   }
 
   /**
@@ -91,8 +91,8 @@ public class CashTransactionDiffblueTest {
     Date date = Date.from(atStartOfDayResult.atZone(ZoneId.of("UTC")).toInstant());
 
     // Act and Assert
-    assertEquals("1234567890",
-        (new CashTransaction(10L, date, new Account(1234567890L, new Client("Dr Jane Doe"), 10L))).getTarget());
+    assertEquals("987654321",
+        (new CashTransaction(10L, date, new Account(987654321L, new Client("Peter"), 10L))).getTarget());
   }
 
   /**
@@ -106,7 +106,7 @@ public class CashTransactionDiffblueTest {
 
     // Act and Assert
     assertEquals("CASH",
-        (new CashTransaction(-1L, date, new Account(1234567890L, new Client("Dr Jane Doe"), 10L))).getTarget());
+        (new CashTransaction(-1L, date, new Account(987654321L, new Client("Peter"), 10L))).getTarget());
   }
 
   /**
@@ -117,8 +117,7 @@ public class CashTransactionDiffblueTest {
     // Arrange
     LocalDateTime atStartOfDayResult = LocalDate.of(1970, 1, 1).atStartOfDay();
     Date date = Date.from(atStartOfDayResult.atZone(ZoneId.of("UTC")).toInstant());
-    CashTransaction cashTransaction = new CashTransaction(10L, date,
-        new Account(1234567890L, new Client("Dr Jane Doe"), 10L));
+    CashTransaction cashTransaction = new CashTransaction(10L, date, new Account(987654321L, new Client("Peter"), 10L));
 
     // Act
     cashTransaction.executeTransaction();
@@ -135,8 +134,7 @@ public class CashTransactionDiffblueTest {
     // Arrange
     LocalDateTime atStartOfDayResult = LocalDate.of(1970, 1, 1).atStartOfDay();
     Date date = Date.from(atStartOfDayResult.atZone(ZoneId.of("UTC")).toInstant());
-    CashTransaction cashTransaction = new CashTransaction(-1L, date,
-        new Account(1234567890L, new Client("Dr Jane Doe"), 10L));
+    CashTransaction cashTransaction = new CashTransaction(-1L, date, new Account(987654321L, new Client("Peter"), 10L));
 
     // Act
     cashTransaction.executeTransaction();
@@ -154,7 +152,7 @@ public class CashTransactionDiffblueTest {
     LocalDateTime atStartOfDayResult = LocalDate.of(1970, 1, 1).atStartOfDay();
     Date date = Date.from(atStartOfDayResult.atZone(ZoneId.of("UTC")).toInstant());
     CashTransaction cashTransaction = new CashTransaction(Long.MIN_VALUE, date,
-        new Account(1234567890L, new Client("Dr Jane Doe"), 10L));
+        new Account(987654321L, new Client("Peter"), 10L));
 
     // Act
     cashTransaction.executeTransaction();

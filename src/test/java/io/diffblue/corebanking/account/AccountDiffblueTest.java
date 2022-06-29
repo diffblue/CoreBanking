@@ -34,21 +34,21 @@ public class AccountDiffblueTest {
   @Test
   public void testConstructor() {
     // Arrange
-    Client client = new Client("Dr Jane Doe");
+    Client client = new Client("Peter");
 
     // Act
-    Account actualAccount = new Account(1234567890L, client, 10L);
+    Account actualAccount = new Account(987654321L, client, 10L);
     String actualToStringResult = actualAccount.toString();
 
     // Assert
     assertEquals("Current", actualAccount.getAccountName());
-    assertEquals(1234567890L, actualAccount.getAccountNumber());
+    assertEquals(987654321L, actualAccount.getAccountNumber());
     assertEquals(Account.AccountState.OPEN, actualAccount.getAccountState());
     assertSame(client, actualAccount.getClient());
     assertEquals(10L, actualAccount.getCurrentBalance());
     assertEquals(
-        "Account: | Acc #: 1234567890\t | Acc name: Current\t | Acc holder: Dr Jane Doe\t | Acc balance: 10\t | Acc"
-            + " state: OPEN\t |\n" + "Account statement empty.",
+        "Account: | Acc #: 987654321\t | Acc name: Current\t | Acc holder: Peter\t | Acc balance: 10\t | Acc state:"
+            + " OPEN\t |\n" + "Account statement empty.",
         actualToStringResult);
   }
 
@@ -58,17 +58,17 @@ public class AccountDiffblueTest {
   @Test
   public void testConstructor2() {
     // Arrange
-    Client client = new Client("Dr Jane Doe");
+    Client client = new Client("Peter");
 
     // Act
-    Account actualAccount = new Account(1234567890L, client, 10L);
+    Account actualAccount = new Account(987654321L, client, 10L);
 
     // Assert
     assertEquals("Current", actualAccount.getAccountName());
     assertEquals(10L, actualAccount.getCurrentBalance());
     Client client1 = actualAccount.getClient();
     assertSame(client, client1);
-    assertEquals(1234567890L, actualAccount.getAccountNumber());
+    assertEquals(987654321L, actualAccount.getAccountNumber());
     assertEquals(Account.AccountState.OPEN, actualAccount.getAccountState());
     List<Account> expectedTransactions = client1.getAccounts();
     assertEquals(expectedTransactions, actualAccount.getAccountStatement().getTransactions());
@@ -80,13 +80,13 @@ public class AccountDiffblueTest {
   @Test
   public void testAddToBalance() throws AccountException {
     // Arrange
-    Account account = new Account(1234567890L, new Client("Dr Jane Doe"), 10L);
+    Account account = new Account(987654321L, new Client("Peter"), 10L);
 
     // Act
-    account.addToBalance(10L);
+    account.addToBalance(16L);
 
     // Assert
-    assertEquals(20L, account.getCurrentBalance());
+    assertEquals(26L, account.getCurrentBalance());
   }
 
   /**
@@ -95,7 +95,7 @@ public class AccountDiffblueTest {
   @Test
   public void testTakeFromBalance() throws AccountException {
     // Arrange
-    Account account = new Account(1234567890L, new Client("Dr Jane Doe"), 10L);
+    Account account = new Account(987654321L, new Client("Peter"), 10L);
 
     // Act
     account.takeFromBalance(10L);
@@ -111,7 +111,7 @@ public class AccountDiffblueTest {
   public void testTakeFromBalance2() throws AccountException {
     // Arrange, Act and Assert
     thrown.expect(AccountException.class);
-    (new Account(1234567890L, new Client("Dr Jane Doe"), Long.MAX_VALUE)).takeFromBalance(10L);
+    (new Account(987654321L, new Client("Peter"), Long.MAX_VALUE)).takeFromBalance(10L);
   }
 
   /**
@@ -120,7 +120,7 @@ public class AccountDiffblueTest {
   @Test
   public void testSetAccountName() throws AccountException {
     // Arrange
-    Account account = new Account(1234567890L, new Client("Dr Jane Doe"), 10L);
+    Account account = new Account(987654321L, new Client("Peter"), 10L);
 
     // Act
     account.setAccountName("Dr Jane Doe");
@@ -135,7 +135,7 @@ public class AccountDiffblueTest {
   @Test
   public void testCloseAccount() throws AccountException {
     // Arrange
-    Account account = new Account(1234567890L, new Client("Dr Jane Doe"), 10L);
+    Account account = new Account(987654321L, new Client("Peter"), 10L);
 
     // Act
     account.closeAccount();
@@ -150,12 +150,12 @@ public class AccountDiffblueTest {
   @Test
   public void testAddTransaction() throws AccountException {
     // Arrange
-    Account account = new Account(1234567890L, new Client("Dr Jane Doe"), 10L);
+    Account account = new Account(987654321L, new Client("Peter"), 10L);
     LocalDateTime atStartOfDayResult = LocalDate.of(1970, 1, 1).atStartOfDay();
     Date date = Date.from(atStartOfDayResult.atZone(ZoneId.of("UTC")).toInstant());
 
     // Act
-    account.addTransaction(new CashTransaction(10L, date, new Account(1234567890L, new Client("Dr Jane Doe"), 10L)));
+    account.addTransaction(new CashTransaction(10L, date, new Account(987654321L, new Client("Peter"), 10L)));
 
     // Assert
     assertEquals(1, account.getAccountStatement().getTransactions().size());
@@ -167,7 +167,7 @@ public class AccountDiffblueTest {
   @Test
   public void testEquals() {
     // Arrange
-    Account account = new Account(1234567890L, new Client("Dr Jane Doe"), 10L);
+    Account account = new Account(987654321L, new Client("Peter"), 10L);
 
     // Act and Assert
     assertEquals(account, account);

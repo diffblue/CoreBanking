@@ -21,8 +21,8 @@ public class TransactionDiffblueTest {
     Date date = Date.from(atStartOfDayResult.atZone(ZoneId.of("UTC")).toInstant());
 
     // Act and Assert
-    assertEquals(10L, (new CashTransaction(10L, date, new Account(1234567890L, new Client("Dr Jane Doe"), 10L)))
-        .getTransactionAmount());
+    assertEquals(10L,
+        (new CashTransaction(10L, date, new Account(987654321L, new Client("Peter"), 10L))).getTransactionAmount());
   }
 
   /**
@@ -36,8 +36,7 @@ public class TransactionDiffblueTest {
 
     // Act and Assert
     assertSame(fromResult,
-        (new CashTransaction(10L, fromResult, new Account(1234567890L, new Client("Dr Jane Doe"), 10L)))
-            .getTransactionDate());
+        (new CashTransaction(10L, fromResult, new Account(987654321L, new Client("Peter"), 10L))).getTransactionDate());
   }
 
   /**
@@ -51,8 +50,7 @@ public class TransactionDiffblueTest {
 
     // Act and Assert
     assertEquals(Transaction.TransactionState.NOT_EXECUTED_YET,
-        (new CashTransaction(10L, date, new Account(1234567890L, new Client("Dr Jane Doe"), 10L)))
-            .getTransactionState());
+        (new CashTransaction(10L, date, new Account(987654321L, new Client("Peter"), 10L))).getTransactionState());
   }
 
   /**
@@ -63,8 +61,7 @@ public class TransactionDiffblueTest {
     // Arrange
     LocalDateTime atStartOfDayResult = LocalDate.of(1970, 1, 1).atStartOfDay();
     Date date = Date.from(atStartOfDayResult.atZone(ZoneId.of("UTC")).toInstant());
-    CashTransaction cashTransaction = new CashTransaction(10L, date,
-        new Account(1234567890L, new Client("Dr Jane Doe"), 10L));
+    CashTransaction cashTransaction = new CashTransaction(10L, date, new Account(987654321L, new Client("Peter"), 10L));
 
     // Act
     cashTransaction.setCurrentStateFailed();
@@ -81,8 +78,7 @@ public class TransactionDiffblueTest {
     // Arrange
     LocalDateTime atStartOfDayResult = LocalDate.of(1970, 1, 1).atStartOfDay();
     Date date = Date.from(atStartOfDayResult.atZone(ZoneId.of("UTC")).toInstant());
-    CashTransaction cashTransaction = new CashTransaction(10L, date,
-        new Account(1234567890L, new Client("Dr Jane Doe"), 10L));
+    CashTransaction cashTransaction = new CashTransaction(10L, date, new Account(987654321L, new Client("Peter"), 10L));
 
     // Act
     cashTransaction.markTransactionAsExecuted();

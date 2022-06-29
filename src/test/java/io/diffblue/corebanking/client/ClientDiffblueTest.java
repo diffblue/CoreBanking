@@ -17,7 +17,7 @@ public class ClientDiffblueTest {
   @Test
   public void testConstructor() {
     // Arrange, Act and Assert
-    assertEquals("Dr Jane Doe", (new Client("Dr Jane Doe")).getClientName());
+    assertEquals("Peter", (new Client("Peter")).getClientName());
   }
 
   /**
@@ -26,10 +26,10 @@ public class ClientDiffblueTest {
   @Test
   public void testAddAccount() {
     // Arrange
-    Client client = new Client("Dr Jane Doe");
+    Client client = new Client("Peter");
 
     // Act
-    client.addAccount(new Account(1234567890L, new Client("Dr Jane Doe"), 10L));
+    client.addAccount(new Account(987654321L, new Client("Peter"), 10L));
 
     // Assert
     assertEquals(1, client.getAccounts().size());
@@ -41,7 +41,7 @@ public class ClientDiffblueTest {
   @Test
   public void testToString() {
     // Arrange, Act and Assert
-    assertEquals("Client name: Dr Jane Doe\n", (new Client("Dr Jane Doe")).toString());
+    assertEquals("Client name: Peter\n", (new Client("Peter")).toString());
   }
 
   /**
@@ -50,13 +50,13 @@ public class ClientDiffblueTest {
   @Test
   public void testToString2() {
     // Arrange
-    Client client = new Client("Dr Jane Doe");
-    client.addAccount(new Account(1234567890L, new Client("Dr Jane Doe"), 10L));
+    Client client = new Client("Peter");
+    client.addAccount(new Account(987654321L, new Client("Peter"), 10L));
 
     // Act and Assert
-    assertEquals("Client name: Dr Jane Doe\n"
-        + "Account: | Acc #: 1234567890\t | Acc name: Current\t | Acc holder: Dr Jane Doe\t | Acc balance: 10\t | Acc"
-        + " state: OPEN\t |\n" + "Account statement empty.\n", client.toString());
+    assertEquals("Client name: Peter\n"
+        + "Account: | Acc #: 987654321\t | Acc name: Current\t | Acc holder: Peter\t | Acc balance: 10\t | Acc state:"
+        + " OPEN\t |\n" + "Account statement empty.\n", client.toString());
   }
 
   /**
@@ -65,16 +65,16 @@ public class ClientDiffblueTest {
   @Test
   public void testToString3() throws AccountException {
     // Arrange
-    Account account = new Account(1234567890L, new Client("Dr Jane Doe"), 10L);
+    Account account = new Account(987654321L, new Client("Peter"), 10L);
     account.addTransaction(null);
 
-    Client client = new Client("Dr Jane Doe");
+    Client client = new Client("Peter");
     client.addAccount(account);
 
     // Act and Assert
-    assertEquals("Client name: Dr Jane Doe\n"
-        + "Account: | Acc #: 1234567890\t | Acc name: Current\t | Acc holder: Dr Jane Doe\t | Acc balance: 10\t | Acc"
-        + " state: OPEN\t |\n" + "null\n" + "\n", client.toString());
+    assertEquals("Client name: Peter\n"
+        + "Account: | Acc #: 987654321\t | Acc name: Current\t | Acc holder: Peter\t | Acc balance: 10\t | Acc state:"
+        + " OPEN\t |\n" + "null\n" + "\n", client.toString());
   }
 }
 

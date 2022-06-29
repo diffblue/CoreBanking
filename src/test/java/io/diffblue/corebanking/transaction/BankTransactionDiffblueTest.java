@@ -24,18 +24,18 @@ public class BankTransactionDiffblueTest {
     // Arrange
     LocalDateTime atStartOfDayResult = LocalDate.of(1970, 1, 1).atStartOfDay();
     Date fromResult = Date.from(atStartOfDayResult.atZone(ZoneId.of("UTC")).toInstant());
-    Account sourceAcc = new Account(1234567890L, new Client("Dr Jane Doe"), 10L);
+    Account sourceAcc = new Account(987654321L, new Client("Peter"), 10L);
 
     // Act
     BankTransaction actualBankTransaction = new BankTransaction(10L, fromResult, sourceAcc,
-        new Account(1234567890L, new Client("Dr Jane Doe"), 10L));
+        new Account(987654321L, new Client("Peter"), 10L));
 
     // Assert
-    assertEquals("1234567890", actualBankTransaction.getSource());
+    assertEquals("987654321", actualBankTransaction.getSource());
     assertEquals(Transaction.TransactionState.NOT_EXECUTED_YET, actualBankTransaction.getTransactionState());
     assertSame(fromResult, actualBankTransaction.getTransactionDate());
     assertEquals(10L, actualBankTransaction.getTransactionAmount());
-    assertEquals("1234567890", actualBankTransaction.getTarget());
+    assertEquals("987654321", actualBankTransaction.getTarget());
   }
 
   /**
@@ -46,12 +46,11 @@ public class BankTransactionDiffblueTest {
     // Arrange
     LocalDateTime atStartOfDayResult = LocalDate.of(1970, 1, 1).atStartOfDay();
     Date date = Date.from(atStartOfDayResult.atZone(ZoneId.of("UTC")).toInstant());
-    Account sourceAcc = new Account(1234567890L, new Client("Dr Jane Doe"), 10L);
+    Account sourceAcc = new Account(987654321L, new Client("Peter"), 10L);
 
     // Act and Assert
-    assertEquals("1234567890",
-        (new BankTransaction(10L, date, sourceAcc, new Account(1234567890L, new Client("Dr Jane Doe"), 10L)))
-            .getSource());
+    assertEquals("987654321",
+        (new BankTransaction(10L, date, sourceAcc, new Account(987654321L, new Client("Peter"), 10L))).getSource());
   }
 
   /**
@@ -62,12 +61,11 @@ public class BankTransactionDiffblueTest {
     // Arrange
     LocalDateTime atStartOfDayResult = LocalDate.of(1970, 1, 1).atStartOfDay();
     Date date = Date.from(atStartOfDayResult.atZone(ZoneId.of("UTC")).toInstant());
-    Account sourceAcc = new Account(1234567890L, new Client("Dr Jane Doe"), 10L);
+    Account sourceAcc = new Account(987654321L, new Client("Peter"), 10L);
 
     // Act and Assert
-    assertEquals("1234567890",
-        (new BankTransaction(10L, date, sourceAcc, new Account(1234567890L, new Client("Dr Jane Doe"), 10L)))
-            .getTarget());
+    assertEquals("987654321",
+        (new BankTransaction(10L, date, sourceAcc, new Account(987654321L, new Client("Peter"), 10L))).getTarget());
   }
 
   /**
@@ -78,10 +76,10 @@ public class BankTransactionDiffblueTest {
     // Arrange
     LocalDateTime atStartOfDayResult = LocalDate.of(1970, 1, 1).atStartOfDay();
     Date date = Date.from(atStartOfDayResult.atZone(ZoneId.of("UTC")).toInstant());
-    Account sourceAcc = new Account(1234567890L, new Client("Dr Jane Doe"), 10L);
+    Account sourceAcc = new Account(987654321L, new Client("Peter"), 10L);
 
     BankTransaction bankTransaction = new BankTransaction(10L, date, sourceAcc,
-        new Account(1234567890L, new Client("Dr Jane Doe"), 10L));
+        new Account(987654321L, new Client("Peter"), 10L));
 
     // Act
     bankTransaction.executeTransaction();
@@ -98,11 +96,11 @@ public class BankTransactionDiffblueTest {
     // Arrange
     LocalDateTime atStartOfDayResult = LocalDate.of(1970, 1, 1).atStartOfDay();
     Date date = Date.from(atStartOfDayResult.atZone(ZoneId.of("UTC")).toInstant());
-    Account sourceAcc = new Account(1234567890L, new Client("Dr Jane Doe"), 10L);
+    Account sourceAcc = new Account(987654321L, new Client("Peter"), 10L);
 
     // Act and Assert
     thrown.expect(TransactionException.class);
-    (new BankTransaction(Long.MAX_VALUE, date, sourceAcc, new Account(1234567890L, new Client("Dr Jane Doe"), 10L)))
+    (new BankTransaction(Long.MAX_VALUE, date, sourceAcc, new Account(987654321L, new Client("Peter"), 10L)))
         .executeTransaction();
   }
 }

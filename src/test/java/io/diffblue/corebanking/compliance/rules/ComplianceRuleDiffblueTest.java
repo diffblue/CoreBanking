@@ -22,7 +22,7 @@ public class ComplianceRuleDiffblueTest {
 
     // Act
     complianceRuleBalanceAboveOrEqualToZero
-        .addToNonCompliantAccounts(new Account(1234567890L, new Client("Dr Jane Doe"), 10L));
+        .addToNonCompliantAccounts(new Account(987654321L, new Client("Peter"), 10L));
 
     // Assert
     assertEquals(1, complianceRuleBalanceAboveOrEqualToZero.getNonCompliantAccounts().size());
@@ -36,12 +36,12 @@ public class ComplianceRuleDiffblueTest {
     // Arrange
     ComplianceRuleBalanceAboveOrEqualToZero complianceRuleBalanceAboveOrEqualToZero = new ComplianceRuleBalanceAboveOrEqualToZero();
     complianceRuleBalanceAboveOrEqualToZero
-        .addToNonCompliantAccounts(new Account(1234567890L, new Client("Dr Jane Doe"), 10L));
+        .addToNonCompliantAccounts(new Account(987654321L, new Client("Peter"), 10L));
 
     // Act and Assert
     thrown.expect(IllegalStateException.class);
     complianceRuleBalanceAboveOrEqualToZero
-        .addToNonCompliantAccounts(new Account(1234567890L, new Client("Dr Jane Doe"), 10L));
+        .addToNonCompliantAccounts(new Account(987654321L, new Client("Peter"), 10L));
   }
 
   /**
@@ -53,8 +53,7 @@ public class ComplianceRuleDiffblueTest {
     ComplianceRuleBalanceAboveOrEqualToZero complianceRuleBalanceAboveOrEqualToZero = new ComplianceRuleBalanceAboveOrEqualToZero();
 
     // Act
-    complianceRuleBalanceAboveOrEqualToZero
-        .addToCompliantAccounts(new Account(1234567890L, new Client("Dr Jane Doe"), 10L));
+    complianceRuleBalanceAboveOrEqualToZero.addToCompliantAccounts(new Account(987654321L, new Client("Peter"), 10L));
 
     // Assert
     assertEquals(1, complianceRuleBalanceAboveOrEqualToZero.getCompliantAccounts().size());
@@ -67,13 +66,11 @@ public class ComplianceRuleDiffblueTest {
   public void testAddToCompliantAccounts2() {
     // Arrange
     ComplianceRuleBalanceAboveOrEqualToZero complianceRuleBalanceAboveOrEqualToZero = new ComplianceRuleBalanceAboveOrEqualToZero();
-    complianceRuleBalanceAboveOrEqualToZero
-        .addToCompliantAccounts(new Account(1234567890L, new Client("Dr Jane Doe"), 10L));
+    complianceRuleBalanceAboveOrEqualToZero.addToCompliantAccounts(new Account(987654321L, new Client("Peter"), 10L));
 
     // Act and Assert
     thrown.expect(IllegalStateException.class);
-    complianceRuleBalanceAboveOrEqualToZero
-        .addToCompliantAccounts(new Account(1234567890L, new Client("Dr Jane Doe"), 10L));
+    complianceRuleBalanceAboveOrEqualToZero.addToCompliantAccounts(new Account(987654321L, new Client("Peter"), 10L));
   }
 
   /**
@@ -86,7 +83,7 @@ public class ComplianceRuleDiffblueTest {
 
     // Act
     complianceRuleBalanceAboveOrEqualToZero
-        .removeFromComplianceLists(new Account(1234567890L, new Client("Dr Jane Doe"), 10L));
+        .removeFromComplianceLists(new Account(987654321L, new Client("Peter"), 10L));
 
     // Assert
     assertTrue(complianceRuleBalanceAboveOrEqualToZero.getCompliantAccounts().isEmpty());

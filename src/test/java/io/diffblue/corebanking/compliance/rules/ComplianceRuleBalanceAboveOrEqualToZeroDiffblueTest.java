@@ -18,7 +18,7 @@ public class ComplianceRuleBalanceAboveOrEqualToZeroDiffblueTest {
 
     // Act
     complianceRuleBalanceAboveOrEqualToZero
-        .validateAccountCompliance(new Account(1234567890L, new Client("Dr Jane Doe"), 10L));
+        .validateAccountCompliance(new Account(987654321L, new Client("Peter"), 10L));
 
     // Assert
     assertEquals(1, complianceRuleBalanceAboveOrEqualToZero.getCompliantAccounts().size());
@@ -35,7 +35,7 @@ public class ComplianceRuleBalanceAboveOrEqualToZeroDiffblueTest {
 
     // Act
     complianceRuleBalanceAboveOrEqualToZero
-        .validateAccountCompliance(new Account(1234567890L, new Client("Dr Jane Doe"), -1L));
+        .validateAccountCompliance(new Account(987654321L, new Client("Peter"), -1L));
 
     // Assert
     assertTrue(complianceRuleBalanceAboveOrEqualToZero.getCompliantAccounts().isEmpty());
