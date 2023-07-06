@@ -91,7 +91,7 @@ public class Account {
     if (getAccountState() != AccountState.OPEN) {
       throw new AccountException("Cannot take from balance, account is closed.");
     }
-    if (currentBalance + amount < 0) {
+    if (currentBalance - amount < 0) {
       throw new AccountException(
           "Trying to take "
               + amount
@@ -208,7 +208,7 @@ public class Account {
     private final List<Transaction> transactions;
 
     /** Constructor. */
-    private AccountStatement() {
+    public AccountStatement() {
       transactions = new ArrayList<Transaction>();
     }
 
