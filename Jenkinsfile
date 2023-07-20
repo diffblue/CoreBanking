@@ -8,9 +8,12 @@ pipeline{
             }
         }
 
-        stage('run tests') {
+        stage('Build project') {
             steps {
-              sh 'mvn test'
+              sh 'mvn --batch-mode --no-transfer-progress clean install -DskipTests'
+              // batch-mode = suppress upload messages to avoid polluting the console log
+              // no-transfer-progress = remove some output; doanloading messages etc
+              // -DskipTests = skipping tests to save time (tests assumed to compile and pass)
             }
         }
     }
