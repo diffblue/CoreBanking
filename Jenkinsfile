@@ -7,5 +7,11 @@ pipeline{
               sh 'git status'
             }
         }
+
+        stage('run tests') {
+            steps {
+              sh 'mvn test'
+            }
+        }
     }
 }
