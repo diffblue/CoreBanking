@@ -32,10 +32,9 @@ pipeline{
                       wget "$DB_RELEASE_URL" --output-document dcover/dcover.zip --quiet
                       unzip -o dcover/dcover.zip -d dcover
                       DCOVER_SCRIPT_LOCATION="dcover/dcover"
-                      echo ${HOME}
+
                       echo "Activate dcover"
-                      "$DCOVER_SCRIPT_LOCATION" license
-                      echo ${HOME}
+                      "$DCOVER_SCRIPT_LOCATION" activate --offline "$DB_LICENSE_KEY"
                       cp "$DB_LICENSE_LIC" ${HOME}/.diffblue/offline/
                       "$DCOVER_SCRIPT_LOCATION" activate --offline "$DB_LICENSE_KEY"
                   '''
