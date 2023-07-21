@@ -36,6 +36,8 @@ pipeline{
                       echo "Activate dcover online"
                       "$DCOVER_SCRIPT_LOCATION" activate "$DB_LICENSE_KEY"
 
+                      "$DCOVER_SCRIPT_LOCATION" license || true
+
 
                       echo "Running dcover with create on create, you may need to update this to reflect your project"
                       "$DCOVER_SCRIPT_LOCATION" create --batch
