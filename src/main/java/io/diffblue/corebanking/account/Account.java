@@ -5,7 +5,7 @@ import io.diffblue.corebanking.transaction.Transaction;
 
 import java.util.ArrayList;
 import java.util.List;
-//useless comment
+
 /** Account class. */
 public class Account {
   public static final int ACCOUNT_NUMBER_LENGTH = 4;
