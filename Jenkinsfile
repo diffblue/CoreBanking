@@ -4,6 +4,7 @@ pipeline{
         DB_RELEASE_URL = credentials('DB_RELEASE_URL')
         DB_LICENSE_KEY = credentials('DB_LICENSE_KEY')
         DB_LICENSE_LIC = credentials('DB_LICENSE_LIC')
+        DB_UNRESTRICTED_URL = credentials('DB_UNRESTRICTED_URL')
 
     }
 
@@ -34,7 +35,7 @@ pipeline{
                       DCOVER_SCRIPT_LOCATION="dcover/dcover"
 
                       echo "Activate dcover"
-                      "$DCOVER_SCRIPT_LOCATION" activate --offline "$DB_LICENSE_KEY"
+                      "$DCOVER_SCRIPT_LOCATION" license
                       cp "$DB_LICENSE_LIC" ${HOME}/.diffblue/offline/
                       "$DCOVER_SCRIPT_LOCATION" activate --offline "$DB_LICENSE_KEY"
                   '''
