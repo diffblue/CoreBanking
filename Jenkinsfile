@@ -4,7 +4,6 @@ pipeline{
         DB_RELEASE_URL = credentials('DB_RELEASE_URL')
         DB_LICENSE_KEY = credentials('DB_LICENSE_KEY')
         DB_LICENSE_LIC = credentials('DB_LICENSE_LIC')
-        DB_UNRESTRICTED_URL = credentials('DB_UNRESTRICTED_URL')
 
     }
 
@@ -30,15 +29,22 @@ pipeline{
                  sh '''
                       echo "Get and unzip dcover jars into directory dcover, store dcover script location for later use"
                       mkdir --parents dcover
-                      wget "$DB_RELEASE_URL" --output-document dcover/dcover.zip --quiet
+                      wget "$DB_UNRESTRICTED_URL" --output-document dcover/dcover.zip --quiet
                       unzip -o dcover/dcover.zip -d dcover
                       DCOVER_SCRIPT_LOCATION="dcover/dcover"
 
-                      echo "Activate dcover"
-                      "$DCOVER_SCRIPT_LOCATION" activate --offline "$DB_LICENSE_KEY"
-                      cp "$DB_LICENSE_LIC" ${HOME}/.diffblue/offline/
-                      "$DCOVER_SCRIPT_LOCATION" activate --offline "$DB_LICENSE_KEY"
+                      echo "Activate dcover online"
+                      "$DCOVER_SCRIPT_LOCATION" activate "$DB_LICENSE_KEY"
                   '''
+
+                 /*
+                 sh ''' OFFLINE
+                    echo "Activate dcover offline"
+                    "$DCOVER_SCRIPT_LOCATION" activate --offline "$DB_LICENSE_KEY"
+                    cp "$DB_LICENSE_LIC" ${HOME}/.diffblue/offline/
+                    "$DCOVER_SCRIPT_LOCATION" activate --offline "$DB_LICENSE_KEY"
+                 '''
+                 */
             }
         }
     }
