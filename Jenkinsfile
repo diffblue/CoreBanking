@@ -35,8 +35,7 @@ pipeline{
                       DCOVER_SCRIPT_LOCATION="dcover/dcover"
 
                       echo "Activate dcover"
-                      "$DCOVER_SCRIPT_LOCATION" license
-                      echo "$DB_LICENSE_LIC"
+                      "$DCOVER_SCRIPT_LOCATION" activate --offline "$DB_LICENSE_KEY"
                       cp "$DB_LICENSE_LIC" ${HOME}/.diffblue/offline/
                       "$DCOVER_SCRIPT_LOCATION" activate --offline "$DB_LICENSE_KEY"
                   '''
