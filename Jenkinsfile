@@ -27,9 +27,6 @@ pipeline{
         stage('Activate dcover') {
             steps { // Step 3
                  sh '''
-
-                      ...
-
                       echo "Get and unzip dcover jars into directory dcover, store dcover script location for later use"
                       mkdir --parents dcover
                       wget "$DB_RELEASE_URL" --output-document dcover/dcover.zip --quiet
@@ -40,7 +37,6 @@ pipeline{
                       "$DCOVER_SCRIPT_LOCATION" license
                       cp "$DB_LICENSE_LIC" ${HOME}/.diffblue/offline/
                       "$DCOVER_SCRIPT_LOCATION" activate --offline "$DB_LICENSE_KEY"
-
                   '''
             }
         }
