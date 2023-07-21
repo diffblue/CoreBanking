@@ -47,5 +47,16 @@ pipeline{
                  */
             }
         }
+
+        stage('Use dcover create in Jenkins') {
+            steps {
+                sh '''
+                    echo "Running dcover with create on create, you may need to update this to reflect your project"
+                    "$DCOVER_SCRIPT_LOCATION" create --batch
+                '''
+                // --batch = to minimise output
+
+            }
+        }
     }
 }
