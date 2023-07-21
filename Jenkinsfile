@@ -24,7 +24,7 @@ pipeline{
             }
         }
 
-        stage('Activate dcover') {
+        stage('Activate and run dcover') {
             steps { // Step 3
                  sh '''
                       echo "Get and unzip dcover jars into directory dcover, store dcover script location for later use"
@@ -35,6 +35,10 @@ pipeline{
 
                       echo "Activate dcover online"
                       "$DCOVER_SCRIPT_LOCATION" activate "$DB_LICENSE_KEY"
+
+
+                      echo "Running dcover with create on create, you may need to update this to reflect your project"
+                      "$DCOVER_SCRIPT_LOCATION" create --batch
                   '''
 
                  /*
@@ -45,17 +49,6 @@ pipeline{
                     "$DCOVER_SCRIPT_LOCATION" activate --offline "$DB_LICENSE_KEY"
                  '''
                  */
-            }
-        }
-
-        stage('Use dcover create in Jenkins') {
-            steps {
-                sh '''
-                    echo "Running dcover with create on create, you may need to update this to reflect your project"
-                    "$DCOVER_SCRIPT_LOCATION" create --batch
-                '''
-                // --batch = to minimise output
-
             }
         }
     }
