@@ -29,7 +29,7 @@ pipeline{
                  sh '''
                       echo "Get and unzip dcover jars into directory dcover, store dcover script location for later use"
                       mkdir --parents dcover
-                      wget "$DB_UNRESTRICTED_URL" --output-document dcover/dcover.zip --quiet
+                      wget "$DB_RELEASE_URL" --output-document dcover/dcover.zip --quiet
                       unzip -o dcover/dcover.zip -d dcover
                       DCOVER_SCRIPT_LOCATION="dcover/dcover"
 
