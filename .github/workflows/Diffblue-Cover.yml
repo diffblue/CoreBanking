@@ -1,0 +1,26 @@
+name: Diffblue Cover
+
+on:
+  pull_request:
+
+jobs:
+  Diffblue:
+    runs-on: ubuntu-latest
+    steps:
+
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup Java
+        uses: actions/setup-java@v3
+        with:
+          java-version: '8'
+          distribution: 'zulu'
+
+      - name: Maven Install
+        run: mvn --batch-mode install
+  
+      - name: Diffblue Cover
+        uses: diffblue/cover-github-action@main
+        with:
+          license-key: ${{ secrets.DIFFBLUE_LICENSE_KEY }}
