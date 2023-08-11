@@ -24,3 +24,6 @@ jobs:
         uses: diffblue/cover-github-action@main
         with:
           license-key: ${{ secrets.DIFFBLUE_LICENSE_KEY }}
+
+      - name: Create Tests
+        run: dcover create
