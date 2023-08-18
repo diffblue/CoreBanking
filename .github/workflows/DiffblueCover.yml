@@ -1,0 +1,41 @@
+name: Diffblue Cover
+
+on:
+  pull_request:
+
+jobs:
+  Diffblue:
+    runs-on: ubuntu-latest
+    steps:
+
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          # The default GITHUB_TOKEN doesn't have the necessary permissions
+          # so a custom token should be used here with sufficient access.
+          token: ${{ secrets.DIFFBLUE_TOKEN }}
+
+      - name: Setup Java
+        uses: actions/setup-java@v3
+        with:
+          java-version: '8'
+          distribution: 'zulu'
+
+      - name: Maven Install
+        run: mvn --batch-mode install
+  
+      - name: Diffblue Cover
+        uses: diffblue/cover-github-action@main
+        env:
+          GITHUB_TOKEN: ${{ secrets.DIFFBLUE_TOKEN }}
+          JVM_ARGS: -Xmx4096m
+        with:
+          # License key used to activate the installation
+          license-key: ${{ secrets.DIFFBLUE_LICENSE_KEY }}
+          # User name and email used to author commits
+          user-name: Diffblue CI
+          user-email: db-ci-platform@diffblue.com
+          # Integration test project lives in a subdir
+          working-directory: ./test/maven-project
+          # Add a differentiator based on the matrix
+          topic-id-differentiator: ${{ matrix.os }}
