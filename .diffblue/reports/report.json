@@ -1,0 +1,1995 @@
+{
+  "meta" : {
+    "reportVersion" : "2.7"
+  },
+  "run" : {
+    "version" : "2025.09.01-44e352d-licensed",
+    "creationTimestamp" : "2025-09-10T16:20:47.2Z",
+    "command" : "dcover create --coverage-reports --upload http://localhost:8080 --project-name CoreBanking --name with-diffblue-tests",
+    "totalTime" : 266.832,
+    "environmentDetectionTime" : 0.298,
+    "indexingTime" : 0.292,
+    "entryPointsTime" : 0.266,
+    "generationTime" : 228.732,
+    "timeToFirstTest" : 34.212,
+    "timeToLastTest" : 251.992,
+    "indexQueryTime" : 3.875,
+    "verificationTime" : 4.262,
+    "validationTime" : 6.298
+  },
+  "codes" : {
+    "R000" : "Success",
+    "R002" : "Missing observers",
+    "R004" : "No meaningful assertions found",
+    "R010" : "Timeout",
+    "R013" : "No inputs found that don't throw a trivial exception",
+    "R031" : "Method may be time-sensitive",
+    "T000" : "Method eligible for test creation",
+    "T001" : "Trivial getter",
+    "T003" : "Private method",
+    "T005" : "Trivial constructor",
+    "T006" : "Main method",
+    "T010" : "Abstract or interface method",
+    "T012" : "Synthetic method",
+    "T020" : "Other trivial method",
+    "T021" : "Empty method body",
+    "T023" : "Testability unknown",
+    "V000" : "Validated successfully"
+  },
+  "summary" : {
+    "classesCount" : 26,
+    "methodsCount" : 117,
+    "cumulativeDiffblueTestCount" : 66,
+    "cumulativeManualTestCount" : 0,
+    "completeTestCount" : 66,
+    "incompleteTestCount" : 0,
+    "skeletonTestCount" : 0,
+    "totalPhysicalLineCount" : 807,
+    "perMethodTestability" : {
+      "T000" : 52,
+      "T001" : 11,
+      "T003" : 14,
+      "T005" : 12,
+      "T006" : 1,
+      "T010" : 8,
+      "T012" : 7,
+      "T020" : 1,
+      "T021" : 2,
+      "T023" : 9
+    },
+    "perMethodOutcome" : {
+      "R000" : 57,
+      "R002" : 1,
+      "R004" : 7,
+      "R010" : 1,
+      "R013" : 5,
+      "R031" : 1,
+      "T003" : 14,
+      "T005" : 6,
+      "T006" : 1,
+      "T010" : 8,
+      "T012" : 7,
+      "T023" : 9
+    },
+    "perTestOutcome" : {
+      "R000" : 66
+    },
+    "perTestValidation" : {
+      "V000" : 66
+    }
+  },
+  "classes" : {
+    "io.diffblue.corebanking.CoreBanking" : {
+      "methodsCount" : 8,
+      "completeTestCount" : 4,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : {
+        "T000" : 4,
+        "T001" : 2,
+        "T003" : 1,
+        "T005" : 1
+      },
+      "perMethodOutcome" : {
+        "R000" : 6,
+        "R004" : 1,
+        "T003" : 1
+      },
+      "perTestOutcome" : {
+        "R000" : 4
+      }
+    },
+    "io.diffblue.corebanking.CoreBankingException" : {
+      "methodsCount" : 1,
+      "completeTestCount" : 1,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : {
+        "T005" : 1
+      },
+      "perMethodOutcome" : {
+        "R000" : 1
+      },
+      "perTestOutcome" : {
+        "R000" : 1
+      }
+    },
+    "io.diffblue.corebanking.Util" : {
+      "methodsCount" : 2,
+      "completeTestCount" : 0,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : {
+        "T000" : 1,
+        "T005" : 1
+      },
+      "perMethodOutcome" : {
+        "R013" : 1,
+        "T005" : 1
+      }
+    },
+    "io.diffblue.corebanking.account.Account" : {
+      "methodsCount" : 14,
+      "completeTestCount" : 13,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : {
+        "T000" : 7,
+        "T001" : 6,
+        "T020" : 1
+      },
+      "perMethodOutcome" : {
+        "R000" : 14
+      },
+      "perTestOutcome" : {
+        "R000" : 13
+      }
+    },
+    "io.diffblue.corebanking.account.Account$AccountState" : {
+      "methodsCount" : 4,
+      "completeTestCount" : 0,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : {
+        "T003" : 1,
+        "T012" : 2,
+        "T023" : 1
+      },
+      "perMethodOutcome" : {
+        "T003" : 1,
+        "T012" : 2,
+        "T023" : 1
+      }
+    },
+    "io.diffblue.corebanking.account.Account$AccountStatement" : {
+      "methodsCount" : 5,
+      "completeTestCount" : 2,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : {
+        "T000" : 1,
+        "T001" : 1,
+        "T003" : 1,
+        "T005" : 1,
+        "T012" : 1
+      },
+      "perMethodOutcome" : {
+        "R000" : 3,
+        "T003" : 1,
+        "T012" : 1
+      },
+      "perTestOutcome" : {
+        "R000" : 2
+      }
+    },
+    "io.diffblue.corebanking.account.AccountException" : {
+      "methodsCount" : 1,
+      "completeTestCount" : 1,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : {
+        "T005" : 1
+      },
+      "perMethodOutcome" : {
+        "R000" : 1
+      },
+      "perTestOutcome" : {
+        "R000" : 1
+      }
+    },
+    "io.diffblue.corebanking.client.Client" : {
+      "methodsCount" : 5,
+      "completeTestCount" : 5,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : {
+        "T000" : 2,
+        "T001" : 2,
+        "T005" : 1
+      },
+      "perMethodOutcome" : {
+        "R000" : 5
+      },
+      "perTestOutcome" : {
+        "R000" : 5
+      }
+    },
+    "io.diffblue.corebanking.compliance.CheckCompliance" : {
+      "methodsCount" : 5,
+      "completeTestCount" : 0,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : {
+        "T000" : 2,
+        "T005" : 1,
+        "T021" : 1,
+        "T023" : 1
+      },
+      "perMethodOutcome" : {
+        "R004" : 1,
+        "R013" : 1,
+        "T005" : 2,
+        "T023" : 1
+      }
+    },
+    "io.diffblue.corebanking.compliance.rules.ComplianceRule" : {
+      "methodsCount" : 8,
+      "completeTestCount" : 6,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : {
+        "T000" : 6,
+        "T010" : 2
+      },
+      "perMethodOutcome" : {
+        "R000" : 4,
+        "R004" : 2,
+        "T010" : 2
+      },
+      "perTestOutcome" : {
+        "R000" : 6
+      }
+    },
+    "io.diffblue.corebanking.compliance.rules.ComplianceRuleBalanceAboveOrEqualToZero" : {
+      "methodsCount" : 2,
+      "completeTestCount" : 3,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : {
+        "T000" : 1,
+        "T005" : 1
+      },
+      "perMethodOutcome" : {
+        "R000" : 2
+      },
+      "perTestOutcome" : {
+        "R000" : 3
+      }
+    },
+    "io.diffblue.corebanking.datamanagement.ReadFromDB" : {
+      "methodsCount" : 4,
+      "completeTestCount" : 4,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : {
+        "T000" : 2,
+        "T003" : 1,
+        "T005" : 1
+      },
+      "perMethodOutcome" : {
+        "R000" : 2,
+        "T003" : 1,
+        "T005" : 1
+      },
+      "perTestOutcome" : {
+        "R000" : 4
+      }
+    },
+    "io.diffblue.corebanking.datamanagement.WriteToDB" : {
+      "methodsCount" : 2,
+      "completeTestCount" : 0,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : {
+        "T005" : 1,
+        "T021" : 1
+      },
+      "perMethodOutcome" : {
+        "T005" : 2
+      }
+    },
+    "io.diffblue.corebanking.transaction.BankTransaction" : {
+      "methodsCount" : 5,
+      "completeTestCount" : 5,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : {
+        "T000" : 4,
+        "T003" : 1
+      },
+      "perMethodOutcome" : {
+        "R000" : 4,
+        "T003" : 1
+      },
+      "perTestOutcome" : {
+        "R000" : 5
+      }
+    },
+    "io.diffblue.corebanking.transaction.CashTransaction" : {
+      "methodsCount" : 4,
+      "completeTestCount" : 9,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : {
+        "T000" : 4
+      },
+      "perMethodOutcome" : {
+        "R000" : 4
+      },
+      "perTestOutcome" : {
+        "R000" : 9
+      }
+    },
+    "io.diffblue.corebanking.transaction.CashTransaction$CashTransactionType" : {
+      "methodsCount" : 4,
+      "completeTestCount" : 0,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : {
+        "T003" : 1,
+        "T012" : 2,
+        "T023" : 1
+      },
+      "perMethodOutcome" : {
+        "T003" : 1,
+        "T012" : 2,
+        "T023" : 1
+      }
+    },
+    "io.diffblue.corebanking.transaction.Transaction" : {
+      "methodsCount" : 11,
+      "completeTestCount" : 4,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : {
+        "T000" : 7,
+        "T010" : 4
+      },
+      "perMethodOutcome" : {
+        "R000" : 4,
+        "R004" : 1,
+        "R013" : 1,
+        "R031" : 1,
+        "T010" : 4
+      },
+      "perTestOutcome" : {
+        "R000" : 4
+      }
+    },
+    "io.diffblue.corebanking.transaction.Transaction$TransactionState" : {
+      "methodsCount" : 4,
+      "completeTestCount" : 0,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : {
+        "T003" : 1,
+        "T012" : 2,
+        "T023" : 1
+      },
+      "perMethodOutcome" : {
+        "T003" : 1,
+        "T012" : 2,
+        "T023" : 1
+      }
+    },
+    "io.diffblue.corebanking.transaction.TransactionException" : {
+      "methodsCount" : 1,
+      "completeTestCount" : 1,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : {
+        "T005" : 1
+      },
+      "perMethodOutcome" : {
+        "R000" : 1
+      },
+      "perTestOutcome" : {
+        "R000" : 1
+      }
+    },
+    "io.diffblue.corebanking.ui.CoreBankingTextUI" : {
+      "methodsCount" : 3,
+      "completeTestCount" : 0,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : {
+        "T003" : 1,
+        "T005" : 1,
+        "T006" : 1
+      },
+      "perMethodOutcome" : {
+        "R002" : 1,
+        "T003" : 1,
+        "T006" : 1
+      }
+    },
+    "io.diffblue.corebanking.ui.menu.AccountsMenu" : {
+      "methodsCount" : 5,
+      "completeTestCount" : 1,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : {
+        "T000" : 2,
+        "T003" : 2,
+        "T023" : 1
+      },
+      "perMethodOutcome" : {
+        "R000" : 1,
+        "R013" : 1,
+        "T003" : 2,
+        "T023" : 1
+      },
+      "perTestOutcome" : {
+        "R000" : 1
+      }
+    },
+    "io.diffblue.corebanking.ui.menu.ClientsMenu" : {
+      "methodsCount" : 5,
+      "completeTestCount" : 1,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : {
+        "T000" : 2,
+        "T003" : 2,
+        "T023" : 1
+      },
+      "perMethodOutcome" : {
+        "R000" : 1,
+        "R004" : 1,
+        "T003" : 2,
+        "T023" : 1
+      },
+      "perTestOutcome" : {
+        "R000" : 1
+      }
+    },
+    "io.diffblue.corebanking.ui.menu.ComplianceMenu" : {
+      "methodsCount" : 3,
+      "completeTestCount" : 1,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : {
+        "T000" : 2,
+        "T023" : 1
+      },
+      "perMethodOutcome" : {
+        "R000" : 1,
+        "R013" : 1,
+        "T023" : 1
+      },
+      "perTestOutcome" : {
+        "R000" : 1
+      }
+    },
+    "io.diffblue.corebanking.ui.menu.CoreBankingDataManagementMenu" : {
+      "methodsCount" : 3,
+      "completeTestCount" : 4,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : {
+        "T000" : 2,
+        "T023" : 1
+      },
+      "perMethodOutcome" : {
+        "R000" : 2,
+        "T023" : 1
+      },
+      "perTestOutcome" : {
+        "R000" : 4
+      }
+    },
+    "io.diffblue.corebanking.ui.menu.MainMenu" : {
+      "methodsCount" : 3,
+      "completeTestCount" : 1,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : {
+        "T000" : 2,
+        "T023" : 1
+      },
+      "perMethodOutcome" : {
+        "R000" : 1,
+        "R004" : 1,
+        "T023" : 1
+      },
+      "perTestOutcome" : {
+        "R000" : 1
+      }
+    },
+    "io.diffblue.corebanking.ui.menu.Menu" : {
+      "methodsCount" : 5,
+      "completeTestCount" : 0,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : {
+        "T000" : 1,
+        "T003" : 2,
+        "T010" : 2
+      },
+      "perMethodOutcome" : {
+        "R010" : 1,
+        "T003" : 2,
+        "T010" : 2
+      }
+    }
+  },
+  "methods" : {
+    "io.diffblue.corebanking.CoreBanking.<init>:()V" : {
+      "completeTestCount" : 1,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T005",
+      "perMethodOutcome" : "R000",
+      "perTestOutcome" : {
+        "R000" : 1
+      },
+      "lineNumbers" : [
+        32,
+        33,
+        34,
+        35
+      ]
+    },
+    "io.diffblue.corebanking.CoreBanking.generateValidAccountNumber:()J" : {
+      "completeTestCount" : 0,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T003",
+      "perMethodOutcome" : "T003",
+      "lineNumbers" : [
+        52,
+        53,
+        54,
+        55,
+        56,
+        58,
+        55,
+        62
+      ]
+    },
+    "io.diffblue.corebanking.CoreBanking.getAccounts:()Ljava/util/List;" : {
+      "completeTestCount" : 1,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T001",
+      "perMethodOutcome" : "R000",
+      "perTestOutcome" : {
+        "R000" : 1
+      },
+      "lineNumbers" : [
+        97
+      ]
+    },
+    "io.diffblue.corebanking.CoreBanking.getClients:()Ljava/util/List;" : {
+      "completeTestCount" : 1,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T001",
+      "perMethodOutcome" : "R000",
+      "perTestOutcome" : {
+        "R000" : 1
+      },
+      "lineNumbers" : [
+        106
+      ]
+    },
+    "io.diffblue.corebanking.CoreBanking.openNewAccount:(Lio/diffblue/corebanking/client/Client;J)Lio/diffblue/corebanking/account/Account;" : {
+      "completeTestCount" : 1,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T000",
+      "perMethodOutcome" : "R000",
+      "perTestOutcome" : {
+        "R000" : 1
+      },
+      "lineNumbers" : [
+        73,
+        74,
+        75,
+        76,
+        77
+      ]
+    },
+    "io.diffblue.corebanking.CoreBanking.purgeCoreBanking:()V" : {
+      "completeTestCount" : 1,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T000",
+      "perMethodOutcome" : "R000",
+      "perTestOutcome" : {
+        "R000" : 1
+      },
+      "lineNumbers" : [
+        41,
+        42,
+        43,
+        44
+      ]
+    },
+    "io.diffblue.corebanking.CoreBanking.registerNewClient:(Lio/diffblue/corebanking/client/Client;)Lio/diffblue/corebanking/client/Client;" : {
+      "completeTestCount" : 1,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T000",
+      "perMethodOutcome" : "R000",
+      "perTestOutcome" : {
+        "R000" : 1
+      },
+      "lineNumbers" : [
+        87,
+        88
+      ]
+    },
+    "io.diffblue.corebanking.CoreBanking.toString:()Ljava/lang/String;" : {
+      "completeTestCount" : 0,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T000",
+      "perMethodOutcome" : "R004",
+      "lineNumbers" : [
+        115,
+        117,
+        118,
+        117,
+        121
+      ]
+    },
+    "io.diffblue.corebanking.CoreBankingException.<init>:(Ljava/lang/String;)V" : {
+      "completeTestCount" : 1,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T005",
+      "perMethodOutcome" : "R000",
+      "perTestOutcome" : {
+        "R000" : 1
+      },
+      "lineNumbers" : [
+        27,
+        28
+      ]
+    },
+    "io.diffblue.corebanking.Util.<init>:()V" : {
+      "completeTestCount" : 0,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T005",
+      "perMethodOutcome" : "T005",
+      "lineNumbers" : [
+        20
+      ]
+    },
+    "io.diffblue.corebanking.Util.generateXdigitNumber:(I)J" : {
+      "completeTestCount" : 0,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T000",
+      "perMethodOutcome" : "R013",
+      "lineNumbers" : [
+        28,
+        29,
+        30,
+        31,
+        29,
+        33
+      ]
+    },
+    "io.diffblue.corebanking.account.Account$AccountState.<clinit>:()V" : {
+      "completeTestCount" : 0,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T023",
+      "perMethodOutcome" : "T023"
+    },
+    "io.diffblue.corebanking.account.Account$AccountState.<init>:(Ljava/lang/String;I)V" : {
+      "completeTestCount" : 0,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T003",
+      "perMethodOutcome" : "T003",
+      "lineNumbers" : [
+        208
+      ]
+    },
+    "io.diffblue.corebanking.account.Account$AccountState.valueOf:(Ljava/lang/String;)Lio/diffblue/corebanking/account/Account$AccountState;" : {
+      "completeTestCount" : 0,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T012",
+      "perMethodOutcome" : "T012",
+      "lineNumbers" : [
+        208
+      ]
+    },
+    "io.diffblue.corebanking.account.Account$AccountState.values:()[Lio/diffblue/corebanking/account/Account$AccountState;" : {
+      "completeTestCount" : 0,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T012",
+      "perMethodOutcome" : "T012",
+      "lineNumbers" : [
+        208
+      ]
+    },
+    "io.diffblue.corebanking.account.Account$AccountStatement.<init>:(Lio/diffblue/corebanking/account/Account;)V" : {
+      "completeTestCount" : 1,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T005",
+      "perMethodOutcome" : "R000",
+      "perTestOutcome" : {
+        "R000" : 1
+      },
+      "lineNumbers" : [
+        227,
+        228,
+        229
+      ]
+    },
+    "io.diffblue.corebanking.account.Account$AccountStatement.access$000:(Lio/diffblue/corebanking/account/Account$AccountStatement;Lio/diffblue/corebanking/transaction/Transaction;)V" : {
+      "completeTestCount" : 0,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T012",
+      "perMethodOutcome" : "T012",
+      "lineNumbers" : [
+        223
+      ]
+    },
+    "io.diffblue.corebanking.account.Account$AccountStatement.addTransaction:(Lio/diffblue/corebanking/transaction/Transaction;)V" : {
+      "completeTestCount" : 0,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T003",
+      "perMethodOutcome" : "T003",
+      "lineNumbers" : [
+        246,
+        247
+      ]
+    },
+    "io.diffblue.corebanking.account.Account$AccountStatement.getTransactions:()Ljava/util/List;" : {
+      "completeTestCount" : 1,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T001",
+      "perMethodOutcome" : "R000",
+      "perTestOutcome" : {
+        "R000" : 1
+      },
+      "lineNumbers" : [
+        237
+      ]
+    },
+    "io.diffblue.corebanking.account.Account$AccountStatement.toString:()Ljava/lang/String;" : {
+      "completeTestCount" : 1,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T000",
+      "perMethodOutcome" : "R000",
+      "perTestOutcome" : {
+        "R000" : 1
+      },
+      "lineNumbers" : [
+        255,
+        257,
+        258,
+        260,
+        261,
+        260,
+        264
+      ]
+    },
+    "io.diffblue.corebanking.account.Account.<init>:(JLio/diffblue/corebanking/client/Client;J)V" : {
+      "completeTestCount" : 1,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T000",
+      "perMethodOutcome" : "R000",
+      "perTestOutcome" : {
+        "R000" : 1
+      },
+      "lineNumbers" : [
+        42,
+        30,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48
+      ]
+    },
+    "io.diffblue.corebanking.account.Account.addToBalance:(J)V" : {
+      "completeTestCount" : 1,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T000",
+      "perMethodOutcome" : "R000",
+      "perTestOutcome" : {
+        "R000" : 1
+      },
+      "lineNumbers" : [
+        93,
+        94,
+        96,
+        97
+      ]
+    },
+    "io.diffblue.corebanking.account.Account.addTransaction:(Lio/diffblue/corebanking/transaction/Transaction;)V" : {
+      "completeTestCount" : 1,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T000",
+      "perMethodOutcome" : "R000",
+      "perTestOutcome" : {
+        "R000" : 1
+      },
+      "lineNumbers" : [
+        171,
+        172,
+        174,
+        175
+      ]
+    },
+    "io.diffblue.corebanking.account.Account.closeAccount:()V" : {
+      "completeTestCount" : 1,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T000",
+      "perMethodOutcome" : "R000",
+      "perTestOutcome" : {
+        "R000" : 1
+      },
+      "lineNumbers" : [
+        158,
+        159,
+        161,
+        162
+      ]
+    },
+    "io.diffblue.corebanking.account.Account.equals:(Ljava/lang/Object;)Z" : {
+      "completeTestCount" : 5,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T000",
+      "perMethodOutcome" : "R000",
+      "perTestOutcome" : {
+        "R000" : 5
+      },
+      "lineNumbers" : [
+        215,
+        216,
+        217,
+        218,
+        219
+      ]
+    },
+    "io.diffblue.corebanking.account.Account.getAccountName:()Ljava/lang/String;" : {
+      "completeTestCount" : 1,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T001",
+      "perMethodOutcome" : "R000",
+      "perTestOutcome" : {
+        "R000" : 1
+      },
+      "lineNumbers" : [
+        127
+      ]
+    },
+    "io.diffblue.corebanking.account.Account.getAccountNumber:()J" : {
+      "completeTestCount" : 1,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T001",
+      "perMethodOutcome" : "R000",
+      "perTestOutcome" : {
+        "R000" : 1
+      },
+      "lineNumbers" : [
+        56
+      ]
+    },
+    "io.diffblue.corebanking.account.Account.getAccountState:()Lio/diffblue/corebanking/account/Account$AccountState;" : {
+      "completeTestCount" : 1,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T001",
+      "perMethodOutcome" : "R000",
+      "perTestOutcome" : {
+        "R000" : 1
+      },
+      "lineNumbers" : [
+        149
+      ]
+    },
+    "io.diffblue.corebanking.account.Account.getAccountStatement:()Lio/diffblue/corebanking/account/Account$AccountStatement;" : {
+      "completeTestCount" : 1,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T001",
+      "perMethodOutcome" : "R000",
+      "perTestOutcome" : {
+        "R000" : 1
+      },
+      "lineNumbers" : [
+        74
+      ]
+    },
+    "io.diffblue.corebanking.account.Account.getClient:()Lio/diffblue/corebanking/client/Client;" : {
+      "completeTestCount" : 1,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T001",
+      "perMethodOutcome" : "R000",
+      "perTestOutcome" : {
+        "R000" : 1
+      },
+      "lineNumbers" : [
+        65
+      ]
+    },
+    "io.diffblue.corebanking.account.Account.getCurrentBalance:()J" : {
+      "completeTestCount" : 1,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T001",
+      "perMethodOutcome" : "R000",
+      "perTestOutcome" : {
+        "R000" : 1
+      },
+      "lineNumbers" : [
+        83
+      ]
+    },
+    "io.diffblue.corebanking.account.Account.setAccountName:(Ljava/lang/String;)V" : {
+      "completeTestCount" : 1,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T000",
+      "perMethodOutcome" : "R000",
+      "perTestOutcome" : {
+        "R000" : 1
+      },
+      "lineNumbers" : [
+        137,
+        138,
+        140,
+        141
+      ]
+    },
+    "io.diffblue.corebanking.account.Account.takeFromBalance:(J)V" : {
+      "completeTestCount" : 2,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T000",
+      "perMethodOutcome" : "R000",
+      "perTestOutcome" : {
+        "R000" : 2
+      },
+      "lineNumbers" : [
+        107,
+        108,
+        110,
+        111,
+        118,
+        119
+      ]
+    },
+    "io.diffblue.corebanking.account.Account.toString:()Ljava/lang/String;" : {
+      "completeTestCount" : 1,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T020",
+      "perMethodOutcome" : "R000",
+      "perTestOutcome" : {
+        "R000" : 1
+      },
+      "lineNumbers" : [
+        183,
+        185,
+        187,
+        190,
+        193,
+        196,
+        199,
+        202,
+        204
+      ]
+    },
+    "io.diffblue.corebanking.account.AccountException.<init>:(Ljava/lang/String;)V" : {
+      "completeTestCount" : 1,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T005",
+      "perMethodOutcome" : "R000",
+      "perTestOutcome" : {
+        "R000" : 1
+      },
+      "lineNumbers" : [
+        29,
+        30
+      ]
+    },
+    "io.diffblue.corebanking.client.Client.<init>:(Ljava/lang/String;)V" : {
+      "completeTestCount" : 1,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T005",
+      "perMethodOutcome" : "R000",
+      "perTestOutcome" : {
+        "R000" : 1
+      },
+      "lineNumbers" : [
+        34,
+        35,
+        36,
+        37
+      ]
+    },
+    "io.diffblue.corebanking.client.Client.addAccount:(Lio/diffblue/corebanking/account/Account;)V" : {
+      "completeTestCount" : 1,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T000",
+      "perMethodOutcome" : "R000",
+      "perTestOutcome" : {
+        "R000" : 1
+      },
+      "lineNumbers" : [
+        54,
+        55
+      ]
+    },
+    "io.diffblue.corebanking.client.Client.getAccounts:()Ljava/util/List;" : {
+      "completeTestCount" : 1,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T001",
+      "perMethodOutcome" : "R000",
+      "perTestOutcome" : {
+        "R000" : 1
+      },
+      "lineNumbers" : [
+        63
+      ]
+    },
+    "io.diffblue.corebanking.client.Client.getClientName:()Ljava/lang/String;" : {
+      "completeTestCount" : 1,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T001",
+      "perMethodOutcome" : "R000",
+      "perTestOutcome" : {
+        "R000" : 1
+      },
+      "lineNumbers" : [
+        45
+      ]
+    },
+    "io.diffblue.corebanking.client.Client.toString:()Ljava/lang/String;" : {
+      "completeTestCount" : 3,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T000",
+      "perMethodOutcome" : "R000",
+      "perTestOutcome" : {
+        "R000" : 3
+      },
+      "lineNumbers" : [
+        72,
+        74,
+        75,
+        76,
+        75,
+        79,
+        81,
+        84
+      ]
+    },
+    "io.diffblue.corebanking.compliance.CheckCompliance.<clinit>:()V" : {
+      "completeTestCount" : 0,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T023",
+      "perMethodOutcome" : "T023"
+    },
+    "io.diffblue.corebanking.compliance.CheckCompliance.<init>:()V" : {
+      "completeTestCount" : 0,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T005",
+      "perMethodOutcome" : "T005",
+      "lineNumbers" : [
+        26
+      ]
+    },
+    "io.diffblue.corebanking.compliance.CheckCompliance.checkAccountCompliance:(Ljava/util/List;)V" : {
+      "completeTestCount" : 0,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T000",
+      "perMethodOutcome" : "R013",
+      "lineNumbers" : [
+        43,
+        46,
+        47,
+        48,
+        49,
+        50
+      ]
+    },
+    "io.diffblue.corebanking.compliance.CheckCompliance.purgeComplianceResults:()V" : {
+      "completeTestCount" : 0,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T000",
+      "perMethodOutcome" : "R004",
+      "lineNumbers" : [
+        60,
+        61,
+        62,
+        63
+      ]
+    },
+    "io.diffblue.corebanking.compliance.CheckCompliance.viewComplianceCheckResults:()V" : {
+      "completeTestCount" : 0,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T021",
+      "perMethodOutcome" : "T005",
+      "lineNumbers" : [
+        56
+      ]
+    },
+    "io.diffblue.corebanking.compliance.rules.ComplianceRule.<init>:()V" : {
+      "completeTestCount" : 0,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T010",
+      "perMethodOutcome" : "T010",
+      "lineNumbers" : [
+        24,
+        26,
+        27
+      ]
+    },
+    "io.diffblue.corebanking.compliance.rules.ComplianceRule.addToCompliantAccounts:(Lio/diffblue/corebanking/account/Account;)V" : {
+      "completeTestCount" : 2,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T000",
+      "perMethodOutcome" : "R000",
+      "perTestOutcome" : {
+        "R000" : 2
+      },
+      "lineNumbers" : [
+        45,
+        46,
+        48,
+        49
+      ]
+    },
+    "io.diffblue.corebanking.compliance.rules.ComplianceRule.addToNonCompliantAccounts:(Lio/diffblue/corebanking/account/Account;)V" : {
+      "completeTestCount" : 2,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T000",
+      "perMethodOutcome" : "R000",
+      "perTestOutcome" : {
+        "R000" : 2
+      },
+      "lineNumbers" : [
+        34,
+        35,
+        37,
+        38
+      ]
+    },
+    "io.diffblue.corebanking.compliance.rules.ComplianceRule.getCompliantAccounts:()Ljava/util/List;" : {
+      "completeTestCount" : 1,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T000",
+      "perMethodOutcome" : "R000",
+      "perTestOutcome" : {
+        "R000" : 1
+      },
+      "lineNumbers" : [
+        73
+      ]
+    },
+    "io.diffblue.corebanking.compliance.rules.ComplianceRule.getNonCompliantAccounts:()Ljava/util/List;" : {
+      "completeTestCount" : 1,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T000",
+      "perMethodOutcome" : "R000",
+      "perTestOutcome" : {
+        "R000" : 1
+      },
+      "lineNumbers" : [
+        65
+      ]
+    },
+    "io.diffblue.corebanking.compliance.rules.ComplianceRule.purgeAccounts:()V" : {
+      "completeTestCount" : 0,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T000",
+      "perMethodOutcome" : "R004",
+      "lineNumbers" : [
+        85,
+        86,
+        87
+      ]
+    },
+    "io.diffblue.corebanking.compliance.rules.ComplianceRule.removeFromComplianceLists:(Lio/diffblue/corebanking/account/Account;)V" : {
+      "completeTestCount" : 0,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T000",
+      "perMethodOutcome" : "R004",
+      "lineNumbers" : [
+        56,
+        57,
+        58
+      ]
+    },
+    "io.diffblue.corebanking.compliance.rules.ComplianceRule.validateAccountCompliance:(Lio/diffblue/corebanking/account/Account;)V" : {
+      "completeTestCount" : 0,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T010",
+      "perMethodOutcome" : "T010"
+    },
+    "io.diffblue.corebanking.compliance.rules.ComplianceRuleBalanceAboveOrEqualToZero.<init>:()V" : {
+      "completeTestCount" : 1,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T005",
+      "perMethodOutcome" : "R000",
+      "perTestOutcome" : {
+        "R000" : 1
+      },
+      "lineNumbers" : [
+        21
+      ]
+    },
+    "io.diffblue.corebanking.compliance.rules.ComplianceRuleBalanceAboveOrEqualToZero.validateAccountCompliance:(Lio/diffblue/corebanking/account/Account;)V" : {
+      "completeTestCount" : 2,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T000",
+      "perMethodOutcome" : "R000",
+      "perTestOutcome" : {
+        "R000" : 2
+      },
+      "lineNumbers" : [
+        31,
+        34,
+        35,
+        37,
+        39
+      ]
+    },
+    "io.diffblue.corebanking.datamanagement.ReadFromDB.<init>:()V" : {
+      "completeTestCount" : 0,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T005",
+      "perMethodOutcome" : "T005",
+      "lineNumbers" : [
+        27
+      ]
+    },
+    "io.diffblue.corebanking.datamanagement.ReadFromDB.readFromDB:()Lio/diffblue/corebanking/CoreBanking;" : {
+      "completeTestCount" : 1,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T000",
+      "perMethodOutcome" : "R000",
+      "perTestOutcome" : {
+        "R000" : 1
+      },
+      "lineNumbers" : [
+        29,
+        30,
+        31
+      ]
+    },
+    "io.diffblue.corebanking.datamanagement.ReadFromDB.readFromDB:(Lio/diffblue/corebanking/CoreBanking;)V" : {
+      "completeTestCount" : 3,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T000",
+      "perMethodOutcome" : "R000",
+      "perTestOutcome" : {
+        "R000" : 3
+      },
+      "lineNumbers" : [
+        35,
+        37,
+        38
+      ]
+    },
+    "io.diffblue.corebanking.datamanagement.ReadFromDB.tempStaticData:(Lio/diffblue/corebanking/CoreBanking;)V" : {
+      "completeTestCount" : 0,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T003",
+      "perMethodOutcome" : "T003",
+      "lineNumbers" : [
+        42,
+        43,
+        44,
+        45,
+        48,
+        50,
+        51,
+        54,
+        56,
+        59,
+        60,
+        61,
+        64,
+        65,
+        66,
+        67,
+        68,
+        69,
+        72,
+        78
+      ]
+    },
+    "io.diffblue.corebanking.datamanagement.WriteToDB.<init>:()V" : {
+      "completeTestCount" : 0,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T005",
+      "perMethodOutcome" : "T005",
+      "lineNumbers" : [
+        21
+      ]
+    },
+    "io.diffblue.corebanking.datamanagement.WriteToDB.writeToDisk:(Lio/diffblue/corebanking/CoreBanking;)V" : {
+      "completeTestCount" : 0,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T021",
+      "perMethodOutcome" : "T005",
+      "lineNumbers" : [
+        24
+      ]
+    },
+    "io.diffblue.corebanking.transaction.BankTransaction.<init>:(JLjava/util/Date;Lio/diffblue/corebanking/account/Account;Lio/diffblue/corebanking/account/Account;)V" : {
+      "completeTestCount" : 1,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T000",
+      "perMethodOutcome" : "R000",
+      "perTestOutcome" : {
+        "R000" : 1
+      },
+      "lineNumbers" : [
+        37,
+        38,
+        39,
+        40
+      ]
+    },
+    "io.diffblue.corebanking.transaction.BankTransaction.cloneBankTransaction:()Lio/diffblue/corebanking/transaction/BankTransaction;" : {
+      "completeTestCount" : 0,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T003",
+      "perMethodOutcome" : "T003",
+      "lineNumbers" : [
+        66,
+        68,
+        69,
+        70
+      ]
+    },
+    "io.diffblue.corebanking.transaction.BankTransaction.executeTransaction:()V" : {
+      "completeTestCount" : 2,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T000",
+      "perMethodOutcome" : "R000",
+      "perTestOutcome" : {
+        "R000" : 2
+      },
+      "lineNumbers" : [
+        80,
+        81,
+        82,
+        84,
+        85,
+        90,
+        91,
+        92,
+        93,
+        99,
+        94,
+        95,
+        96,
+        97,
+        98,
+        103,
+        104,
+        105,
+        106,
+        110,
+        107,
+        108,
+        109,
+        111
+      ]
+    },
+    "io.diffblue.corebanking.transaction.BankTransaction.getSource:()Ljava/lang/String;" : {
+      "completeTestCount" : 1,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T000",
+      "perMethodOutcome" : "R000",
+      "perTestOutcome" : {
+        "R000" : 1
+      },
+      "lineNumbers" : [
+        48
+      ]
+    },
+    "io.diffblue.corebanking.transaction.BankTransaction.getTarget:()Ljava/lang/String;" : {
+      "completeTestCount" : 1,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T000",
+      "perMethodOutcome" : "R000",
+      "perTestOutcome" : {
+        "R000" : 1
+      },
+      "lineNumbers" : [
+        57
+      ]
+    },
+    "io.diffblue.corebanking.transaction.CashTransaction$CashTransactionType.<clinit>:()V" : {
+      "completeTestCount" : 0,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T023",
+      "perMethodOutcome" : "T023"
+    },
+    "io.diffblue.corebanking.transaction.CashTransaction$CashTransactionType.<init>:(Ljava/lang/String;I)V" : {
+      "completeTestCount" : 0,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T003",
+      "perMethodOutcome" : "T003",
+      "lineNumbers" : [
+        113
+      ]
+    },
+    "io.diffblue.corebanking.transaction.CashTransaction$CashTransactionType.valueOf:(Ljava/lang/String;)Lio/diffblue/corebanking/transaction/CashTransaction$CashTransactionType;" : {
+      "completeTestCount" : 0,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T012",
+      "perMethodOutcome" : "T012",
+      "lineNumbers" : [
+        113
+      ]
+    },
+    "io.diffblue.corebanking.transaction.CashTransaction$CashTransactionType.values:()[Lio/diffblue/corebanking/transaction/CashTransaction$CashTransactionType;" : {
+      "completeTestCount" : 0,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T012",
+      "perMethodOutcome" : "T012",
+      "lineNumbers" : [
+        113
+      ]
+    },
+    "io.diffblue.corebanking.transaction.CashTransaction.<init>:(JLjava/util/Date;Lio/diffblue/corebanking/account/Account;)V" : {
+      "completeTestCount" : 2,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T000",
+      "perMethodOutcome" : "R000",
+      "perTestOutcome" : {
+        "R000" : 2
+      },
+      "lineNumbers" : [
+        36,
+        37,
+        38,
+        39,
+        41,
+        43
+      ]
+    },
+    "io.diffblue.corebanking.transaction.CashTransaction.executeTransaction:()V" : {
+      "completeTestCount" : 3,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T000",
+      "perMethodOutcome" : "R000",
+      "perTestOutcome" : {
+        "R000" : 3
+      },
+      "lineNumbers" : [
+        80,
+        81,
+        84,
+        85,
+        91,
+        92,
+        93,
+        94,
+        96,
+        97,
+        102,
+        98,
+        99,
+        100,
+        101,
+        106,
+        110,
+        107,
+        108,
+        109,
+        111
+      ]
+    },
+    "io.diffblue.corebanking.transaction.CashTransaction.getSource:()Ljava/lang/String;" : {
+      "completeTestCount" : 2,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T000",
+      "perMethodOutcome" : "R000",
+      "perTestOutcome" : {
+        "R000" : 2
+      },
+      "lineNumbers" : [
+        52,
+        53,
+        55
+      ]
+    },
+    "io.diffblue.corebanking.transaction.CashTransaction.getTarget:()Ljava/lang/String;" : {
+      "completeTestCount" : 2,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T000",
+      "perMethodOutcome" : "R000",
+      "perTestOutcome" : {
+        "R000" : 2
+      },
+      "lineNumbers" : [
+        66,
+        67,
+        69
+      ]
+    },
+    "io.diffblue.corebanking.transaction.Transaction$TransactionState.<clinit>:()V" : {
+      "completeTestCount" : 0,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T023",
+      "perMethodOutcome" : "T023"
+    },
+    "io.diffblue.corebanking.transaction.Transaction$TransactionState.<init>:(Ljava/lang/String;I)V" : {
+      "completeTestCount" : 0,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T003",
+      "perMethodOutcome" : "T003",
+      "lineNumbers" : [
+        148
+      ]
+    },
+    "io.diffblue.corebanking.transaction.Transaction$TransactionState.valueOf:(Ljava/lang/String;)Lio/diffblue/corebanking/transaction/Transaction$TransactionState;" : {
+      "completeTestCount" : 0,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T012",
+      "perMethodOutcome" : "T012",
+      "lineNumbers" : [
+        148
+      ]
+    },
+    "io.diffblue.corebanking.transaction.Transaction$TransactionState.values:()[Lio/diffblue/corebanking/transaction/Transaction$TransactionState;" : {
+      "completeTestCount" : 0,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T012",
+      "perMethodOutcome" : "T012",
+      "lineNumbers" : [
+        148
+      ]
+    },
+    "io.diffblue.corebanking.transaction.Transaction.<init>:(JLjava/util/Date;)V" : {
+      "completeTestCount" : 0,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T010",
+      "perMethodOutcome" : "T010",
+      "lineNumbers" : [
+        35,
+        36,
+        37,
+        38,
+        39
+      ]
+    },
+    "io.diffblue.corebanking.transaction.Transaction.executeTransaction:()V" : {
+      "completeTestCount" : 0,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T010",
+      "perMethodOutcome" : "T010"
+    },
+    "io.diffblue.corebanking.transaction.Transaction.getSource:()Ljava/lang/String;" : {
+      "completeTestCount" : 0,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T010",
+      "perMethodOutcome" : "T010"
+    },
+    "io.diffblue.corebanking.transaction.Transaction.getTarget:()Ljava/lang/String;" : {
+      "completeTestCount" : 0,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T010",
+      "perMethodOutcome" : "T010"
+    },
+    "io.diffblue.corebanking.transaction.Transaction.getTransactionAmount:()J" : {
+      "completeTestCount" : 1,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T000",
+      "perMethodOutcome" : "R000",
+      "perTestOutcome" : {
+        "R000" : 1
+      },
+      "lineNumbers" : [
+        61
+      ]
+    },
+    "io.diffblue.corebanking.transaction.Transaction.getTransactionDate:()Ljava/util/Date;" : {
+      "completeTestCount" : 0,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T000",
+      "perMethodOutcome" : "R031",
+      "lineNumbers" : [
+        70
+      ]
+    },
+    "io.diffblue.corebanking.transaction.Transaction.getTransactionState:()Lio/diffblue/corebanking/transaction/Transaction$TransactionState;" : {
+      "completeTestCount" : 1,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T000",
+      "perMethodOutcome" : "R000",
+      "perTestOutcome" : {
+        "R000" : 1
+      },
+      "lineNumbers" : [
+        79
+      ]
+    },
+    "io.diffblue.corebanking.transaction.Transaction.markTransactionAsExecuted:()V" : {
+      "completeTestCount" : 1,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T000",
+      "perMethodOutcome" : "R000",
+      "perTestOutcome" : {
+        "R000" : 1
+      },
+      "lineNumbers" : [
+        114,
+        115
+      ]
+    },
+    "io.diffblue.corebanking.transaction.Transaction.setAccountBalanceAfterTransaction:(J)V" : {
+      "completeTestCount" : 0,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T000",
+      "perMethodOutcome" : "R004",
+      "lineNumbers" : [
+        90,
+        91
+      ]
+    },
+    "io.diffblue.corebanking.transaction.Transaction.setCurrentStateFailed:()V" : {
+      "completeTestCount" : 1,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T000",
+      "perMethodOutcome" : "R000",
+      "perTestOutcome" : {
+        "R000" : 1
+      },
+      "lineNumbers" : [
+        99,
+        100,
+        103,
+        104
+      ]
+    },
+    "io.diffblue.corebanking.transaction.Transaction.toString:()Ljava/lang/String;" : {
+      "completeTestCount" : 0,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T000",
+      "perMethodOutcome" : "R013",
+      "lineNumbers" : [
+        123,
+        125,
+        126,
+        129,
+        132,
+        141,
+        144
+      ]
+    },
+    "io.diffblue.corebanking.transaction.TransactionException.<init>:(Ljava/lang/String;)V" : {
+      "completeTestCount" : 1,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T005",
+      "perMethodOutcome" : "R000",
+      "perTestOutcome" : {
+        "R000" : 1
+      },
+      "lineNumbers" : [
+        28,
+        29
+      ]
+    },
+    "io.diffblue.corebanking.ui.CoreBankingTextUI.<init>:(Lio/diffblue/corebanking/CoreBanking;)V" : {
+      "completeTestCount" : 0,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T005",
+      "perMethodOutcome" : "R002",
+      "lineNumbers" : [
+        33,
+        34,
+        35
+      ]
+    },
+    "io.diffblue.corebanking.ui.CoreBankingTextUI.main:([Ljava/lang/String;)V" : {
+      "completeTestCount" : 0,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T006",
+      "perMethodOutcome" : "T006",
+      "lineNumbers" : [
+        45,
+        46,
+        50,
+        48,
+        49,
+        51
+      ]
+    },
+    "io.diffblue.corebanking.ui.CoreBankingTextUI.startTextUI:()V" : {
+      "completeTestCount" : 0,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T003",
+      "perMethodOutcome" : "T003",
+      "lineNumbers" : [
+        55,
+        56,
+        57
+      ]
+    },
+    "io.diffblue.corebanking.ui.menu.AccountsMenu.<clinit>:()V" : {
+      "completeTestCount" : 0,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T023",
+      "perMethodOutcome" : "T023"
+    },
+    "io.diffblue.corebanking.ui.menu.AccountsMenu.<init>:(Lio/diffblue/corebanking/CoreBanking;)V" : {
+      "completeTestCount" : 1,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T000",
+      "perMethodOutcome" : "R000",
+      "perTestOutcome" : {
+        "R000" : 1
+      },
+      "lineNumbers" : [
+        35,
+        36
+      ]
+    },
+    "io.diffblue.corebanking.ui.menu.AccountsMenu.createNewAccount:()V" : {
+      "completeTestCount" : 0,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T003",
+      "perMethodOutcome" : "T003",
+      "lineNumbers" : [
+        71
+      ]
+    },
+    "io.diffblue.corebanking.ui.menu.AccountsMenu.executeMenuOption:(I)V" : {
+      "completeTestCount" : 0,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T000",
+      "perMethodOutcome" : "R013",
+      "lineNumbers" : [
+        44,
+        46,
+        47,
+        49,
+        50,
+        52,
+        53,
+        55,
+        58
+      ]
+    },
+    "io.diffblue.corebanking.ui.menu.AccountsMenu.viewAccounts:()V" : {
+      "completeTestCount" : 0,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T003",
+      "perMethodOutcome" : "T003",
+      "lineNumbers" : [
+        62,
+        63,
+        64,
+        65
+      ]
+    },
+    "io.diffblue.corebanking.ui.menu.ClientsMenu.<clinit>:()V" : {
+      "completeTestCount" : 0,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T023",
+      "perMethodOutcome" : "T023"
+    },
+    "io.diffblue.corebanking.ui.menu.ClientsMenu.<init>:(Lio/diffblue/corebanking/CoreBanking;)V" : {
+      "completeTestCount" : 1,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T000",
+      "perMethodOutcome" : "R000",
+      "perTestOutcome" : {
+        "R000" : 1
+      },
+      "lineNumbers" : [
+        37,
+        38
+      ]
+    },
+    "io.diffblue.corebanking.ui.menu.ClientsMenu.executeMenuOption:(I)V" : {
+      "completeTestCount" : 0,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T000",
+      "perMethodOutcome" : "R004",
+      "lineNumbers" : [
+        46,
+        48,
+        49,
+        51,
+        52,
+        54,
+        55,
+        57,
+        60
+      ]
+    },
+    "io.diffblue.corebanking.ui.menu.ClientsMenu.registerNewClient:()V" : {
+      "completeTestCount" : 0,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T003",
+      "perMethodOutcome" : "T003",
+      "lineNumbers" : [
+        71,
+        72,
+        74,
+        75,
+        76,
+        79,
+        77,
+        78,
+        80
+      ]
+    },
+    "io.diffblue.corebanking.ui.menu.ClientsMenu.viewClients:()V" : {
+      "completeTestCount" : 0,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T003",
+      "perMethodOutcome" : "T003",
+      "lineNumbers" : [
+        64,
+        65,
+        66,
+        67
+      ]
+    },
+    "io.diffblue.corebanking.ui.menu.ComplianceMenu.<clinit>:()V" : {
+      "completeTestCount" : 0,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T023",
+      "perMethodOutcome" : "T023"
+    },
+    "io.diffblue.corebanking.ui.menu.ComplianceMenu.<init>:(Lio/diffblue/corebanking/CoreBanking;)V" : {
+      "completeTestCount" : 1,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T000",
+      "perMethodOutcome" : "R000",
+      "perTestOutcome" : {
+        "R000" : 1
+      },
+      "lineNumbers" : [
+        33,
+        34
+      ]
+    },
+    "io.diffblue.corebanking.ui.menu.ComplianceMenu.executeMenuOption:(I)V" : {
+      "completeTestCount" : 0,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T000",
+      "perMethodOutcome" : "R013",
+      "lineNumbers" : [
+        42,
+        44,
+        45,
+        47,
+        48,
+        50,
+        51,
+        53,
+        56
+      ]
+    },
+    "io.diffblue.corebanking.ui.menu.CoreBankingDataManagementMenu.<clinit>:()V" : {
+      "completeTestCount" : 0,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T023",
+      "perMethodOutcome" : "T023"
+    },
+    "io.diffblue.corebanking.ui.menu.CoreBankingDataManagementMenu.<init>:(Lio/diffblue/corebanking/CoreBanking;)V" : {
+      "completeTestCount" : 1,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T000",
+      "perMethodOutcome" : "R000",
+      "perTestOutcome" : {
+        "R000" : 1
+      },
+      "lineNumbers" : [
+        37,
+        38
+      ]
+    },
+    "io.diffblue.corebanking.ui.menu.CoreBankingDataManagementMenu.executeMenuOption:(I)V" : {
+      "completeTestCount" : 3,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T000",
+      "perMethodOutcome" : "R000",
+      "perTestOutcome" : {
+        "R000" : 3
+      },
+      "lineNumbers" : [
+        46,
+        48,
+        49,
+        52,
+        55,
+        53,
+        54,
+        56,
+        58,
+        59,
+        61,
+        64
+      ]
+    },
+    "io.diffblue.corebanking.ui.menu.MainMenu.<clinit>:()V" : {
+      "completeTestCount" : 0,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T023",
+      "perMethodOutcome" : "T023"
+    },
+    "io.diffblue.corebanking.ui.menu.MainMenu.<init>:(Lio/diffblue/corebanking/CoreBanking;)V" : {
+      "completeTestCount" : 1,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T000",
+      "perMethodOutcome" : "R000",
+      "perTestOutcome" : {
+        "R000" : 1
+      },
+      "lineNumbers" : [
+        38,
+        39
+      ]
+    },
+    "io.diffblue.corebanking.ui.menu.MainMenu.executeMenuOption:(I)V" : {
+      "completeTestCount" : 0,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T000",
+      "perMethodOutcome" : "R004",
+      "lineNumbers" : [
+        47,
+        49,
+        50,
+        51,
+        53,
+        54,
+        55,
+        57,
+        58,
+        59,
+        61,
+        63,
+        64,
+        66,
+        67,
+        69,
+        72
+      ]
+    },
+    "io.diffblue.corebanking.ui.menu.Menu.<init>:(Ljava/lang/String;[Ljava/lang/String;Lio/diffblue/corebanking/CoreBanking;)V" : {
+      "completeTestCount" : 0,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T010",
+      "perMethodOutcome" : "T010",
+      "lineNumbers" : [
+        34,
+        35,
+        36,
+        37,
+        38
+      ]
+    },
+    "io.diffblue.corebanking.ui.menu.Menu.executeMenuOption:(I)V" : {
+      "completeTestCount" : 0,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T010",
+      "perMethodOutcome" : "T010"
+    },
+    "io.diffblue.corebanking.ui.menu.Menu.printMenu:()V" : {
+      "completeTestCount" : 0,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T003",
+      "perMethodOutcome" : "T003",
+      "lineNumbers" : [
+        42,
+        43,
+        44,
+        43,
+        46,
+        47
+      ]
+    },
+    "io.diffblue.corebanking.ui.menu.Menu.readMenuOption:()I" : {
+      "completeTestCount" : 0,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T003",
+      "perMethodOutcome" : "T003",
+      "lineNumbers" : [
+        62,
+        65,
+        68,
+        69,
+        72,
+        70,
+        71,
+        75,
+        76,
+        77,
+        80,
+        82
+      ]
+    },
+    "io.diffblue.corebanking.ui.menu.Menu.startMenu:()V" : {
+      "completeTestCount" : 0,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T000",
+      "perMethodOutcome" : "R010",
+      "lineNumbers" : [
+        87,
+        89,
+        90,
+        91,
+        92,
+        93
+      ]
+    }
+  },
+  "validationMetrics" : { }
+}
